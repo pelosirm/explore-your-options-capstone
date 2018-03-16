@@ -13,12 +13,11 @@ html {
 .header-image {
     margin: 0;
     padding: 0;
-    position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    height:75%;
+    height:85%;
     background-size: cover;
     background: url("./img/header-img.jpg") no-repeat center center scroll;
     -webkit-background-size: cover;
@@ -42,7 +41,8 @@ html {
 .header-text h1 {
     font-size: 6em;
     font-weight: 300;
-    line-height: 0;
+    line-height: 15px;
+    font-family: 'Lobster', cursive;
 
 }
 
@@ -64,7 +64,7 @@ html {
 
 .navigation li {
     list-style: none;
-    font-family: 'Barlow', sans-serif;
+    font-family: 'Assistant', sans-serif;
     color: black;
     padding-left: 15px;
     padding-right: 15px;
@@ -82,7 +82,7 @@ html {
 a {
     text-decoration: none;
     color: #23CFFF;
-    font-family: 'Barlow', sans-serif;
+    font-family: 'Assistant', sans-serif;
 
 }
 
@@ -100,9 +100,71 @@ a:hover {
 
 .left a {
     color: white;
+    font-family: 'Lobster', cursive;
 }
 
-.how-it-works-title {
-    color:red;
+
+
+.how-it-works .col-3 {
+    color:black;
+    height: 300px;
+    padding: 0;
+    margin: 5px;
+    text-align: left;
+    border-radius: 20px;
+}
+
+.how-it-works ul {
+    margin: 0;
+    text-align: left;
+    list-style-type: none;
+}
+
+
+.how-it-works .title {
+    color:white;
+    padding-top: 8%;
+}
+.category {
+    background: #78AB46;
+}
+
+.details {
+    background: black;
+    color:white;
+}
+
+.how-it-works .col-6 {
+    height:170px;
+}
+
+.how-it-works-title h1{
+    text-align: center;
+    font-weight: 200;
+    font-size: 4em;
+}
+
+.how-it-works p{
+    padding-left: 20px;
+    padding-right:10px;
+}
+
+.title {
+    text-align: center;
+    font-weight: 200;
+    font-size: 2em;
+    line-height: 0;
+    padding: 10px;
+    font-family: 'Assistant', cursive;
+}
+
+footer {
+    background: black;
+    color:white;
+    text-align: center;
+    margin-top: 50px;
+    height:50px;
+    padding-top: 10px;
+    font-family: 'Lobster', cursive;
 }
 

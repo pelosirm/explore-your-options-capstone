@@ -19,11 +19,13 @@ data, it will allow individuals to get a general idea how much college will cost
 
 ## Initial UX
 
-* As an initial user, I want to land on the page and see what the website is about.
+* As an initial user, I want to land on the page in order to see what the website is about.
 * As an initial user, if I would like to sign up, I would like an easy way to create my account.
-* As a logged in user, I would like to be able to search careers by location and return the median salary for that job, the education level required, and how many years of experience.
+* As a logged in user, I would like to be able to search careers by location and return the median salary for that job, the education level required,
+and how many years of experience.
 * Additionally, the user is able to add career data to compare them later.
-* User is also able to search colleges by degree, specialization, and location or region. The data returned will show average cost, graduation rate, and average debt.
+* User is also able to search colleges by degree, specialization, and location or region. The data returned will show average cost,
+graduation rate, and average debt.
 * User will also be able to see more details about the college including size, programs offered, and more detailed cost breakdown.
 * The user will be able to save the college details in order to compare them against salary and determine return on investment.
 * The user will be able to remove careers and colleges that are no longer applicable.
