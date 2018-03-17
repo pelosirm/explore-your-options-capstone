@@ -577,3 +577,98 @@
 //
 //
 //});
+
+$(document).ready(function () {
+	$('.sign-up').hide();
+	$('.nav-signout').hide();
+	$('.nav-saved').hide();
+	$('.nav-search').hide();
+	$('.search-options').hide();
+	$('.search-careers-input').hide();
+	$('.search-colleges-input').hide();
+	$('.college-results').hide();
+	$('.career-results').hide();
+
+
+	$('.sign-up-btn').on('click', function () {
+		$('.how-it-works').hide();
+		$('.sign-up').show();
+		$('.returning-user').hide();
+		$('.create-new').show();
+		$('.header-intro').hide();
+		$('.header-image').css('height', '100%')
+
+	})
+
+	$('.nav-login').on('click', function () {
+		$('.how-it-works').hide();
+		$('.sign-up').show();
+		$('.returning-user').show();
+		$('.create-new').hide();
+		$('.header-intro').hide();
+		$('.header-image').css('height', '100%')
+	})
+
+	$('.nav-sign-up').on('click', function () {
+		$('.how-it-works').hide();
+		$('.sign-up').show();
+		$('.returning-user').hide();
+		$('.create-new').show();
+		$('.header-intro').hide();
+		$('.header-image').css('height', '100%')
+	})
+
+	$('.form-returning-user').on('submit', function (event) {
+		event.preventDefault();
+		$('.sign-up').hide();
+		$('.header-image').hide();
+		$('.search-options').show();
+	})
+
+	$('.form-create-new').on('submit', function (event) {
+		event.preventDefault();
+		$('.sign-up').hide();
+		$('.header-image').hide();
+		$('.search-options').show();
+	})
+
+	$('.search-careers').on('click', function () {
+		$('.search-careers-input').show();
+		$('.search-careers').hide();
+		$('.search-colleges').show();
+		$('.search-colleges-input').hide();
+	})
+
+	$('.search-colleges').on('click', function () {
+		$('.search-careers-input').hide();
+		$('.search-careers').show();
+		$('.search-colleges').hide();
+		$('.search-colleges-input').show();
+	})
+
+	$('.form-search-colleges').on('submit', function(event){
+		event.preventDefault();
+		$('.search-options').hide();
+		$('.college-results').show();
+	})
+
+	$('.form-search-careers').on('submit', function(event){
+		event.preventDefault();
+		$('.search-options').hide();
+		$('.career-results').show();
+	})
+
+	$('.new-search').on('click', function(){
+		$('.college-results').hide();
+		$('.search-options').show();
+
+	})
+
+	$('.home').on('click', function () {
+
+		location.reload();
+	})
+
+
+
+})

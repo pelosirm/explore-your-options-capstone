@@ -25,7 +25,7 @@
     </header>
     <nav class="navigation navbar-fixed-top">
         <ul>
-            <li class="left">
+            <li class="left home">
                 <a href="#"><i class="fab fa-fly" aria-hidden="true"></i> Explore Your Options</a>
             </li>
         </ul>
@@ -44,7 +44,7 @@
                     <a href="#" class="nav-demo">demo</a>
                 </li>
                 <li class="right">
-                    <a href="#" class="nav-trips">my trips</a>
+                    <a href="#" class="nav-saved">my saved info</a>
                 </li>
                 <li class="right">
                     <a href="#" class="nav-search">search</a>
@@ -60,25 +60,24 @@
             <h1>How it Works</h1>
         </div>
         <div class="row">
-        <div class="col-6 category">
-            <p class="title"> Search Careers</p>
-            </div>
-        <div class="col-6 details">
-
-            <p> search by career and location to return:</p>
-            <ul>
-                <li>national median salary</li>
-                <li>local median salary</li>
-                <li>education required</li>
-                <li>number of years of experience</li>
-            </ul>
-        </div>
-        </div>
-        <div class="row">
-            <div class="col-6 category">
-                <p class="title"> Search Colleges</p>
+            <div class="col-6 category career-img">
             </div>
             <div class="col-6 details">
+                <p class="title-details"> search careers</p>
+                <p> search by career and location to return:</p>
+                <ul>
+                    <li>national median salary</li>
+                    <li>local median salary</li>
+                    <li>education required</li>
+                    <li>number of years of experience</li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6 category grad-img right">
+            </div>
+            <div class="col-6 details left">
+                <p class="title-details"> search colleges</p>
                 <p> search colleges by degree, speciality and location to return:</p>
                 <ul>
                     <li> average cost</li>
@@ -89,14 +88,194 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-6 category">
-                <p class="title"> Compare</p>
+            <div class="col-6 category compare-img">
             </div>
             <div class="col-6 details">
+                <p class="title-details"> compare</p>
                 <p> compare colleges against desires career and calculate return on investment.</p>
             </div>
         </div>
+        <div class="row">
+            <div class="col-12">
+                <button class="button sign-up-btn"> Sign Up</button>
+            </div>
+        </div>
     </section>
+    <section class="sign-up">
+        <div class="login input-square returning-user">
+            <form class="form-returning-user">
+                <legend> Login </legend>
+                <p class='demo-user'> for demo username : 'demo' password : 'demo' </p>
+                <input type="text" name="username" placeholder="username" aria-required="true">
+                <input type="password" name="password" placeholder="password" aria-required="true">
+                <input type="submit" value="Submit">
+                <p> not a user? <a href="#" class="nav-sign-up">create a login</a></p>
+            </form>
+        </div>
+        <div class="login input-square create-new">
+            <form class="form-create-new">
+                <legend> Create New User </legend>
+                <input type="text" name="username" placeholder="username" aria-required="true">
+                <input type="password" name="password" placeholder="password" aria-required="true">
+                <input type="password" name="confirmPassword" placeholder="confirm password" aria-required="true">
+                <input type="submit" value="Submit">
+                <p> already a user? <a href="#" class="nav-login">login</a></p>
+            </form>
+        </div>
+    </section>
+    <section class="search-options">
+        <h1> Explore </h1>
+        <div class="row">
+            <div class="col-6 container search-careers">
+                <img src="./img/nasa.jpg" class="image">
+                <div class="middle">
+                    <div class="text">Search Careers</div>
+                </div>
+            </div>
+            <div class="col-6 search-careers-input">
+                <form class="form-search-careers">
+                    <legend> Search Careers </legend>
+                    <div class="center-on-page">
+                        <div class="select">
+                            <select name="slct" id="slct">
+                        <option>Select Career</option>
+                        <option value="1">Astronaut</option>
+                        <option value="2">Developer</option>
+                        <option value="3">Pilot</option>
+                    </select>
+                        </div>
+                        <div class="select">
+                            <select name="slct" id="slct">
+                        <option>Select State</option>
+                        <option value="1">Alabama</option>
+                        <option value="2">Georgia</option>
+                        <option value="3">Washington</option>
+                    </select>
+                        </div>
+                    </div>
+                    <input type="submit" value="Submit">
+                </form>
+            </div>
+            <div class="col-6 container search-colleges">
+                <img src="./img/books.jpg" class="image" style="width:100%">
+                <div class="middle">
+                    <div class="text">Search Colleges</div>
+                </div>
+            </div>
+            <div class="col-6 search-colleges-input">
+                <form class="form-search-colleges">
+                    <legend> Search Careers </legend>
+                    <div class="center-on-page">
+                        <div class="select">
+                            <select name="slct" id="slct">
+                        <option>Select Degree</option>
+                        <option value="1">Astronaut</option>
+                        <option value="2">Developer</option>
+                        <option value="3">Pilot</option>
+                    </select>
+                        </div>
+                        <div class="select">
+                            <select name="slct" id="slct">
+                        <option>Select Speciality</option>
+                        <option value="1">Alabama</option>
+                        <option value="2">Georgia</option>
+                        <option value="3">Washington</option>
+                    </select>
+                        </div>
+                        <div class="select">
+                            <select name="slct" id="slct">
+                        <option>Select Region</option>
+                        <option value="1">Alabama</option>
+                        <option value="2">Georgia</option>
+                        <option value="3">Washington</option>
+                    </select>
+                        </div>
+                        <div class="select">
+                            <select name="slct" id="slct">
+                        <option>Select State</option>
+                        <option value="1">Alabama</option>
+                        <option value="2">Georgia</option>
+                        <option value="3">Washington</option>
+                    </select>
+                        </div>
+                    </div>
+                    <input type="submit" value="Submit">
+                </form>
+            </div>
+    </section>
+    <section class="college-results">
+        <h1> Search Results </h1>
+        <div class="row">
+            <div class="col-3">
+                <p><span class="heavy emphasis">Duke University</span><br><span class="light"> Durham, NC</span></p>
+                <ul>
+                    <li><span class="heavy">Average Cost:</span> $1400</li>
+                    <li><span class="heavy"> Graduation Rate:</span> 90%</li>
+                    <li><span class="heavy">Average Debt:</span> $30,000</li>
+                </ul>
+                <p class="more-details heavy"><a href="#">More Details</a> </p>
+            </div>
+            <div class="col-3">
+                <p><span class="heavy emphasis">Duke University</span><br><span class="light"> Durham, NC</span></p>
+                <ul>
+                    <li><span class="heavy">Average Cost:</span> $1400</li>
+                    <li><span class="heavy"> Graduation Rate:</span> 90%</li>
+                    <li><span class="heavy">Average Debt:</span> $30,000</li>
+                </ul>
+                <p class="more-details heavy"><a href="#">More Details</a> </p>
+            </div>
+            <div class="col-3">
+                <p><span class="heavy emphasis">Duke University</span><br><span class="light"> Durham, NC</span></p>
+                <ul>
+                    <li><span class="heavy">Average Cost:</span> $1400</li>
+                    <li><span class="heavy"> Graduation Rate:</span> 90%</li>
+                    <li><span class="heavy">Average Debt:</span> $30,000</li>
+                </ul>
+                <p class="more-details heavy"><a href="#">More Details</a> </p>
+            </div>
+        </div>
+        <p class="new-search center"><a  href="#"> new search </a></p>
+    </section>
+    <section class="college-more-detail">
+        <div class="row career-column">
+            <div class="col-12">
+                <p><span class="heavy emphasis">Developer</span><br><span class="light"> Georgia</span></p>
+                <ul>
+                    <li><span class="heavy">
+                        National Median Salary:
+                    </span> $22,000</li>
+                    <li><span class="heavy"> Region Median Salary:</span> $20,000</li>
+                    <li><span class="heavy">Degree Requires:</span> Bachelors</li>
+                    <li><span class="heavy">Experience Needed:</span> 3 years</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <section class="career-results">
+        <div class="row career-column">
+            <div class="col-12">
+                <p><span class="heavy emphasis">Developer</span><br><span class="light"> Georgia</span></p>
+                <ul>
+                    <li><span class="heavy">
+                        National Median Salary:
+                    </span> $22,000</li>
+                    <li><span class="heavy"> Region Median Salary:</span> $20,000</li>
+                    <li><span class="heavy">Degree Requires:</span> Bachelors</li>
+                    <li><span class="heavy">Experience Needed:</span> 3 years</li>
+                </ul>
+            </div>
+        </div>
+            <div class="row">
+            <div class="col-12">
+                <button class="save-career-btn"> Save Career</button>
+            </div>
+        </div>
+
+        <p class="new-search center"><a  href="#"> new search </a></p>
+    </section>
+    <footer>
+        <a href="#"><i class="fab fa-fly" aria-hidden="true"></i> Explore Your Options</a>
+    </footer>
 
 
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>

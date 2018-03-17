@@ -10,6 +10,8 @@ html {
     font-family: 'Assistant', sans-serif;
 }
 
+/* header image/intro */
+
 .header-image {
     margin: 0;
     padding: 0;
@@ -17,7 +19,7 @@ html {
     left: 0;
     right: 0;
     bottom: 0;
-    height:85%;
+    height: 85%;
     background-size: cover;
     background: url("./img/header-img.jpg") no-repeat center center scroll;
     -webkit-background-size: cover;
@@ -32,7 +34,7 @@ html {
     top: 30%;
     background-color: rgba(0, 0, 0, 0.5);
     text-align: center;
-    color:white;
+    color: white;
     width: 100%;
     padding: 30px;
 
@@ -43,7 +45,6 @@ html {
     font-weight: 300;
     line-height: 15px;
     font-family: 'Lobster', cursive;
-
 }
 
 .header-text p {
@@ -51,6 +52,8 @@ html {
     font-size: 2em;
     line-height: 0;
 }
+
+/* nav bar */
 
 .navigation {
     position: fixed;
@@ -83,7 +86,6 @@ a {
     text-decoration: none;
     color: #23CFFF;
     font-family: 'Assistant', sans-serif;
-
 }
 
 a:hover {
@@ -103,15 +105,95 @@ a:hover {
     font-family: 'Lobster', cursive;
 }
 
+/* login/sign up */
 
+.input-square {
+    position: absolute;
+    top: 190px;
+    left: 25%;
+    width: 50%;
+    height: 60%;
+    background-color: rgba(248, 248, 248, 1);
+    border-radius: 25px;
+    font-family: 'Barlow', sans-serif;
+}
 
-.how-it-works .col-3 {
-    color:black;
-    height: 300px;
-    padding: 0;
-    margin: 5px;
-    text-align: left;
-    border-radius: 20px;
+.returning-user {
+    height: 60%
+}
+
+.login p {
+    text-align: center;
+    color: black;
+}
+
+.login a {
+    font-weight: 500;
+}
+
+.demo-user {
+    font-size: 16px;
+    color: red;
+    padding-top: 0px !important;
+}
+
+legend {
+    color: black;
+    font-weight: 100;
+    margin-bottom: 30px;
+    font-size: 20px;
+    text-align: center;
+}
+
+form {
+    font-family: 'Barlow', sans-serif;
+    margin: 40px;
+    color: black;
+}
+
+input[type=text],
+input[type=password] {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    outline: none;
+    display: block;
+    width: 100%;
+    padding: 7px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: none;
+    border-bottom: 1px solid #A9A9A9;
+    background: transparent;
+    font: 16px 'Barlow', sans-serif;
+    height: 45px;
+    color: black;
+    font-weight: 200;
+}
+
+input[type=submit],
+button {
+    background-color: #23CFFF;
+    border-radius: 10px;
+    display: inline-block;
+    cursor: pointer;
+    color: #FFFFFF;
+    font-family: 'Barlow', sans-serif;
+    font-size: 14px;
+    font-weight: 100;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 8px 18px;
+    text-decoration: none;
+    left: 25%;
+    position: relative;
+    width: 50%;
+}
+
+/* how it works section */
+
+.how-it-works {
+    margin-bottom: 50px;
 }
 
 .how-it-works ul {
@@ -120,51 +202,426 @@ a:hover {
     list-style-type: none;
 }
 
-
-.how-it-works .title {
-    color:white;
-    padding-top: 8%;
+.how-it-works .title-details {
+    color: orange;
 }
-.category {
-    background: #78AB46;
+
+.career-img {
+    background-image: url("./img/for-hire.jpg");
+}
+
+.grad-img {
+    background-image: url("./img/grads.jpg");
+}
+
+.compare-img {
+    background-image: url("./img/compare.jpg");
 }
 
 .details {
     background: black;
-    color:white;
+    color: white;
 }
 
 .how-it-works .col-6 {
-    height:170px;
+    height: 210px;
 }
 
-.how-it-works-title h1{
+.how-it-works-title h1 {
     text-align: center;
     font-weight: 200;
     font-size: 4em;
 }
 
-.how-it-works p{
+.how-it-works p {
     padding-left: 20px;
-    padding-right:10px;
+    padding-right: 10px;
 }
 
-.title {
-    text-align: center;
-    font-weight: 200;
+.title-details {
+    text-align: left;
+    font-weight: 400;
     font-size: 2em;
     line-height: 0;
-    padding: 10px;
     font-family: 'Assistant', cursive;
 }
 
+/* search careers/colleges */
+
+.search-options {
+    margin-top: 10%;
+    margin-bottom: 10%
+}
+
+.search-options h1 {
+    text-align: center;
+    font-weight: 200;
+    font-size: 4em;
+}
+
+.search-options .col-6 {
+    height: 500px;
+
+}
+
+.search-options p {
+    position: relative;
+    top: 40%;
+    left: 30% transform: translateY(-40%);
+    transform: translateX(30%);
+    font-family: 'Lobster', cursive;
+    font-size: 2em;
+    color: white;
+}
+
+.container {
+    position: relative;
+    width: 50%;
+}
+
+.image {
+    opacity: 1;
+    display: block;
+    width: 100%;
+    height: 100%;
+    transition: .5s ease;
+    backface-visibility: hidden;
+}
+
+.middle {
+    transition: .5s ease;
+    opacity: 1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.container:hover .image {
+    opacity: 0.3;
+}
+
+.container:hover .middle {
+    opacity: 1;
+}
+
+.text {
+    background-color: #4CAF50;
+    color: white;
+    font-size: 1.5em;
+    padding: 16px 32px;
+}
+
+.search-careers-input,
+.search-colleges-input {
+    background-color: orange;
+}
+
+.search-careers-input legend {
+    color: white;
+}
+
+/* select dropdown */
+
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    outline: 0;
+    box-shadow: none;
+    border: 0 !important;
+    background: #2c3e50;
+    background-image: none;
+}
+
+.select {
+    position: relative;
+    display: block;
+    width: 20em;
+    height: 3em;
+    line-height: 3;
+    background: #2c3e50;
+    overflow: hidden;
+    border-radius: .25em;
+    margin: 30px;
+    left: 20px;
+}
+
+select {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0 0 0 20px;
+    color: #fff;
+    cursor: pointer;
+}
+
+select::-ms-expand {
+    display: none;
+}
+
+/* Arrow */
+
+.select::after {
+    content: '\25BC';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    padding: 0 1em;
+    background: #34495e;
+    pointer-events: none;
+}
+
+/* Transition */
+
+.select:hover::after {
+    color: #f39c12;
+}
+
+.select::after {
+    -webkit-transition: .25s all ease;
+    -o-transition: .25s all ease;
+    transition: .25s all ease;
+}
+
+/* college results & career results */
+
+.college-results, .career-results {
+    margin-top: 100px;
+}
+
+.college-results .col-3 {
+    background-color: black;
+    color:white;
+    margin: 5px;
+    font-weight: 200;
+}
+
+.college-results ul, .career-results ul {
+    list-style-type: none;
+}
+
+.more-details {
+    background-color: orange;
+    width: 107%;
+    margin-left: -3.5%;
+    margin-right: -3.5%;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.more-details a, .save-career a {
+    color:white;
+}
+
+.more-details a:hover, .save-career a:hover {
+    color:black;
+}
+
+.college-results h1, .career-results h1 {
+    text-align: center;
+    font-weight: 200;
+    font-size: 4em;
+}
+
+.new-search a {
+    color:black;
+}
+
+.new-search a:hover {
+    color:orange;
+}
+
+.heavy {
+    font-weight: 200;
+    text-transform: uppercase;
+}
+
+.light {
+    font-weight: 200;
+}
+
+.emphasis {
+    font-size: 2em;
+}
+
+.center {
+    text-align: center;
+}
+
+.save-career {
+    background-color: orange;
+    width: 50%;
+    margin-left: -3.5%;
+    margin-right: -3.5%;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.career-results li{
+    font-weight: 400;
+    font-size: 30px;
+    
+}
+
+.career-results p {
+    font-size: 36px;
+}
+.career-column {
+    margin-left: 10%;
+}
+
+.save-career-btn {
+    background-color: orange;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    font-size: 16px;
+    margin: 0 auto;
+    opacity: 1;
+    transition: 0.3s;
+    display: inline-block;
+    text-decoration: none;
+    cursor: pointer;
+    width: 30%;
+    position: relative;
+    left: 60%
+}
+
+
 footer {
     background: black;
-    color:white;
+    color: white;
     text-align: center;
-    margin-top: 50px;
-    height:50px;
+    height: 50px;
     padding-top: 10px;
     font-family: 'Lobster', cursive;
 }
+
+.button {
+    background-color: orange;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    font-size: 16px;
+    margin: 0 auto;
+    opacity: 1;
+    transition: 0.3s;
+    display: inline-block;
+    text-decoration: none;
+    cursor: pointer;
+    width: 50%;
+    position: relative;
+    left: 25%
+}
+
+.button:hover {
+    background-color: #23CFFF;
+}
+
+
+@media only screen and (max-width: 830px) {
+    .select {
+    position: relative;
+    display: block;
+    width: 20em;
+    height: 3em;
+    line-height: 3;
+    background: #2c3e50;
+    overflow: hidden;
+    border-radius: .25em;
+    margin: 30px 0px 30px 0px;
+    left: 0;
+}
+}
+
+@media only screen and (max-width: 830px) {
+    .header-text h1 {
+        font-size: 4em;
+        font-weight: 300;
+        line-height: 50px;
+        font-family: 'Lobster',
+        cursive;
+
+    }
+
+    .col-6 {
+        width: 100%
+    }
+
+    .header-text p {
+        font-weight: 100;
+        font-size: 1.5em;
+        line-height: 25px;
+    }
+
+    .how-it-works .col-6 .category {
+        height: 100px;
+    }
+
+    .container {
+        position: relative;
+        width: 100%;
+    }
+
+    .image {
+        width: 100%;
+    }
+
+    .more-details {
+    background-color: orange;
+    width: 102%;
+    margin-left: -1%;
+    margin-right: -1%;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+
+.select {
+    position: relative;
+    display: block;
+    width: 20em;
+    height: 3em;
+    line-height: 3;
+    background: #2c3e50;
+    overflow: hidden;
+    border-radius: .25em;
+    margin: 30px 0px 30px 0px;
+    left: 0;
+}
+
+}
+
+
+@media only screen and (max-width: 760px){
+    .container {
+        position: relative;
+        width: 100%;
+    }
+
+
+
+.select {
+    position: relative;
+    display: block;
+    width: 20em;
+    height: 3em;
+    line-height: 3;
+    background: #2c3e50;
+    overflow: hidden;
+    border-radius: .25em;
+    margin: 30px 0px 30px 0px;
+    left: 0;
+}
+}
+
+
+
 
