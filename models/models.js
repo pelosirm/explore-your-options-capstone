@@ -5,82 +5,78 @@ const bcrypt = require('bcryptjs');
 mongoose.Promise = global.Promise;
 
 
-const hikeSchema = mongoose.Schema({
-    trailName: {
-        type: String,
-        required: true
-    },
-    length: {
-        type: Number,
-        required: true
-    },
-    img: {
-        type: String,
-        required: true
-    },
-    location: {
-        type: String,
-        required: true
-    },
-    url: {
-        type: String,
-        required: true
-    },
-    googleMap: {
-        type: String,
-        required: true
-    },
-    dateCompleted: {
-        type: Date
-    },
-    notes: {
+const stateSchema = mongoose.Schema({
+    ST: {
         type: String
     },
-    status: {
-        type: Boolean
+    STATE: {
+        type: String
     },
-    account: {
-        type: String,
-        required: true
+    OCC_CODE: {
+        type: String
+    },
+    OCC_TITLE: {
+        type: String
+    },
+    OCC_GROUP: {
+        type: String
+    },
+    H_MEAN: {
+        type: Number
+    }, 
+    A_MEAN: {
+        type: Number
+    }, 
+    H_MEDIAN: {
+        type: Number
+    }, 
+    A_MEDIAN: {
+        type: Number
+    }, 
+    A_PCT75: {
+        type: Number
+    }, 
+    A_PCT90: {
+        type: Number
     }
 });
 
-const userSchema = mongoose.Schema({
-    user: {
-        type: String,
-        required: true
+const nationalSchema = mongoose.Schema({
+    OCC_TITLE: {
+        type: String
     },
-    password: {
+    OCC_CODE: {
+        type: String
+    },
+    EMP_CHANGE_PERCEMT: {
+        type: Number,
+    },
+    NAT_A_MEDIAN: {
+        type: Number,
+    },
+    EDUCATION: {
         type: String,
-        required: true
+    },
+    WORK_EXPERIENCE: {
+        type: String,
+    }, 
+    OTJ_TRAINIG: {
+        type: String,
     }
-})
+});
 
-userSchema.methods.validatePassword = function (password, callback) {
-    bcrypt.compare(password, this.password, (err, isValid) => {
-        if (err) {
-            callback(err);
-            return;
-        }
-        callback(null, isValid);
-    });
-};
 
-hikeSchema.methods.serialize = function() {
+nationalSchema.methods.serialize = function() {
     return {
-        trailName : this.trailName,
-        length : this.length,
-        location : this.location,
-        status: this.status,
-        notes: this.notes,
-        dateCompleted: this.dateCompleted,
+        OCC_TITLE : this.OCC_TITLE,
+        OCC_CODE: this.OCC_CODE
     };
 };
 
-const Hike = mongoose.model('Hike', hikeSchema);
-const User = mongoose.model('User', userSchema);
+const State = mongoose.model('state_wage', stateSchema);
+const National = mongoose.model('national_wage', nationalSchema, 'national_wages');
 
 module.exports = {
-    Hike: Hike,
-    User: User,
+    State: State,
+    National: National,
 }
