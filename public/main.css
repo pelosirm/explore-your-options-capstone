@@ -1,6 +1,6 @@
-e* {
+* {
     box-sizing: border-box;
-    ;
+    
 }
 
 body,
@@ -10,6 +10,25 @@ html {
     font-family: 'Assistant', sans-serif;
 }
 
+.error-message {
+    text-align: center;
+    background: orange;
+    margin: 0;
+    padding: 10px;
+    width: 50%;
+    left: 25%;
+    right: 25%;
+    border-radius: 25px;
+    position: fixed;
+}
+
+.error-message span {
+    font-weight: 500;
+    padding: 10px;
+    font-family: 'Barlow', sans-serif;
+    font-size: 22px;
+    color: white;
+}
 /* header image/intro */
 
 .header-image {
@@ -454,12 +473,25 @@ select::-ms-expand {
     font-weight: 200;
 }
 
+.career-column .emphasis{
+    height: 30px;
+    display: block;
+    line-height: 40px;
+    font-size: 1em;
+}
+
 .emphasis {
     font-size: 1.5em;
     color: orange;
     height: 40px;
-    display: block;
+    display: inline;
     line-height: 25px;
+}
+
+.comparison .emphasis {
+    height: 30px;
+    line-height: 50px;
+    font-size: 1.5em;
 }
 
 .center {
@@ -513,6 +545,8 @@ select::-ms-expand {
 }
 
 
+
+
 .save-career-btn, .compare-button, .save-college-btn {
     background-color: orange;
     border: none;
@@ -528,7 +562,8 @@ select::-ms-expand {
     cursor: pointer;
     width: 30%;
     position: relative;
-    left: 35%
+    left: 35%;
+    top: 45px;
 }
 
 .saved-options .row {
@@ -609,6 +644,7 @@ select::-ms-expand {
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
+    list-style: none;
 }
 
 .close {

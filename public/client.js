@@ -1,26 +1,18 @@
-////assign active user for user interactions
-let activeUser = '';
-//
-//// api calls
-//
-////fading messages to display alerts and errors
-//function displayError(message) {
-//    $(".error-message span").html(message);
-//    $(".error-message").fadeIn();
-//    $(".error-message").fadeOut(10000);
-//};
-//
+//assign active user for user interactions
+let activeUser = ''
+//api calls
+
 //create new user
 function createUser(user) {
    $.ajax({
-           url: "http://localhost:8080//users/create",
+           url: "http://localhost:8080/users/create",
            type: "POST",
            dateType: "json",
            data: JSON.stringify(user),
            contentType: "application/json"
        })
        .done(function (results) {
-           console.log(results)
+           activeUser = results;
            
        })
        .fail(function (jxhqr, error, errorThrown) {
@@ -34,14 +26,14 @@ function createUser(user) {
 //login returning user
 function loginUser(user) {
    $.ajax({
-           url: "http://localhost:8080//users/login",
+           url: "http://localhost:8080/users/login",
            type: "POST",
            dataType: "json",
            data: JSON.stringify(user),
            contentType: "application/json"
        })
        .done(function (results) {
-       		console.log(results)
+       		activeUser = results;
        })
        .fail(function (jxhqr, error, errorThrown) {
            console.log(jxhqr);
@@ -51,528 +43,241 @@ function loginUser(user) {
        })
 }
 
-//
-//// page manipulation
-//
-////hide for search functionality
-//function search() {
-//    $('.header-intro').show();
-//    $('.search-input').show();
-//    $('.header-text').hide();
-//    $('.header-image').show();
-//    $('.my-trips').hide();
-//    $('.search-results').hide();
-//    $('.returning-user').hide();
-//    $('.create-new').hide();
-//    $('.nav-login').hide();
-//    $('.nav-sign-up').hide();
-//    $('.nav-signout').show();
-//    $('.nav-trips').show();
-//    $('.nav-demo').hide();
-//    $('.nav-search').show();
-//    $('.nav-signout').show();
-//    $('.demo-user').hide();
-//
-//}
-//
-////hide info to show user trips
-//function myTrips() {
-//    $('.my-trips').show();
-//    $('.trips-list').show();
-//    $('.header-intro').hide();
-//    $('.search-input').hide();
-//    $('.header-text').hide();
-//    $('.search-results').hide();
-//    $('.header-image').hide();
-//    $('.nav-login').hide();
-//    $('.nav-sign-up').hide();
-//    $('.nav-trips').show();
-//    $('.nav-demo').hide();
-//    $('.nav-search').show();
-//    $('.nav-signout').show();
-//    $('.demo-user').hide();
-//}
-//
-//$(document).ready(function () {
-//
-//    //this is the front end page loading
-//    $('.login').hide();
-//    $('.search-input').hide();
-//    $('.search-results').hide();
-//    $('.my-trips').hide();
-//    $('.nav-signout').hide();
-//    $('.nav-trips').hide();
-//    $('.nav-search').hide();
-//    $('.nav-signout').hide();
-//    $('.my-trips').hide();
-//    $('.error-message').hide();
-//    $('.demo-user').hide();
-//
-//    // nav bar scroll
-//    $(document).scroll(function () {
-//        let $nav = $(".navbar-fixed-top");
-//        $nav.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
-//    });
-//
-   //create new user
-   $('.form-create-new').on('submit', function (event) {
-
-       event.preventDefault();
-       let form = document.body.querySelector('.form-create-new');
-
-       if (form.checkValidity && !form.checkValidity()) {
-           return;
-       }
-
-       let user = $('.form-create-new [name=username]').val();
-       let password = $('.form-create-new [name=password]').val();
-       let confirmPassword = $('.form-create-new [name=confirmPassword]').val();
-
-       if (password !== confirmPassword) {
-
-           displayError('Passwords must match!')
-       } else {
-
-           let newUser = {
-               username: user,
-               password: password
-           }
-           createUser(newUser);
-
-           $('.form-create-new [name=username]').val('');
-           $('.form-create-new [name=password]').val('');
-           $('.form-create-new [name=confirmPassword]').val('');
-       }
-   })
-
-   //login returning user
-   $('.form-returning-user').on('submit', function (event) {
-       event.preventDefault();
-       let form = document.body.querySelector('.form-returning-user');
-
-       if (form.checkValidity && !form.checkValidity()) {
-           return;
-       }
-       let user = $('.form-returning-user [name=username]').val();
-       let password = $('.form-returning-user [name=password]').val();
-
-       let returingUser = {
-           username: user,
-           password: password
-       }
-       loginUser(returingUser);
-
-       $('.form-returning-user [name=username]').val('');
-       $('.form-returning-user [name=password]').val('');
-   })
-//
-//    //get hikes from external api
-//    $('.search-location').on('submit', function (event) {
-//        event.preventDefault();
-//        let locationValue = encodeURI($('#location').val());
-//
-//        $('.search-results').empty();
-//
-//        getHikes(locationValue);
-//
-//        $('#location').val('');
-//        $('.search-input').hide();
-//        $('.header-intro').hide();
-//        $('.header-image').hide();
-//    })
-//
-//    //adding hike from search results
-//    $('.search-results').on('click', '.add-link', function () {
-//        let newHike = {}
-//        let hikeImage;
-//
-//        newHike.trailName = $(this).closest('.hike').find('.trail-name').text();
-//        newHike.length = $(this).closest('.hike').find('.trail-length').text();
-//        hikeImage = $(this).closest('.hike-img-text').css('background-image');
-//        hikeImage = hikeImage.replace('url("', '').replace('")', '')
-//        newHike.img = hikeImage
-//        newHike.location = $(this).closest('.hike').find('.trail-location').text();
-//        newHike.url = $(this).closest('.more-info').find('a').attr('href');
-//        newHike.googleMap = $(this).closest('.hike').find('.google-maps').find('iframe').attr('src');
-//        newHike.dateCompleted = '';
-//        newHike.notes = '';
-//        newHike.status = false;
-//        newHike.account = activeUser;
-//
-//        addHike(newHike);
-//    })
-//
-//    //navigation page manipulation
-//    //login in user
-//    $('.nav-sign-up').on('click', function () {
-//
-//        $('.create-new').show();
-//        $('.header-text').hide();
-//        $('.search-input').hide();
-//        $('.search-results').hide();
-//        $('.my-trips').hide();
-//        $('.returning-user').hide();
-//        $('.demo-user').hide();
-//    })
-//
-//    $('.nav-demo').on('click', function () {
-//
-//        $('.header-image').show();
-//        $('.header-intro').show();
-//        $('.returning-user').show();
-//        $('.create-new').hide();
-//        $('.search-input').hide();
-//        $('.header-text').hide();
-//        $('.search-results').hide();
-//        $('.my-trips').hide();
-//        $('.demo-user').show();
-//
-//    })
-//
-//    $('.nav-login').on('click', function () {
-//        $('.header-image').show();
-//        $('.header-intro').show();
-//        $('.returning-user').show();
-//        $('.create-new').hide();
-//        $('.search-input').hide();
-//        $('.header-text').hide();
-//        $('.search-results').hide();
-//        $('.my-trips').hide();
-//        $('.demo-user').hide();
-//    })
-//
-//    $('.nav-search').on('click', function () {
-//        search();
-//    })
-//
-//    $('.nav-signout').on('click', function () {
-//        location.reload();
-//    })
-//
-//    //go to my my trips
-//    $('.nav-trips').on('click', function () {
-//        myTrips();
-//        $('.trips-list').empty();
-//        getTrip(activeUser)
-//    })
-//
-//    //update hike page manipulation
-//    $('.update-hike').on('click', function () {
-//        $('.update-form').show();
-//        $('.hike-notes').hide()
-//    })
-//
-//    //expand trips list toggles
-//    $('.trips-list').on('click', '.accordion', function () {
-//        this.classList.toggle("active");
-//        $(this).next().next().toggle();
-//    })
-//
-//    $('.trips-list').on('click', '.update-hike', function () {
-//
-//        let updateId = $(this).closest('.panel').attr('id')
-//        let notes = $(this).closest('.panel').find('.update-notes').text();
-//        let date = $(this).closest('.panel').find('.update-complete').text();
-//        if (date == "Not Yet" || date == '') {
-//            date = buildDate(new Date())
-//        }
-//        let divUpdate = $(this).closest('.hike-notes')
-//        $(this).closest('.hike-notes').empty();
-//        let updateForm = buildUpdateHtml(updateId, notes, date)
-//        divUpdate.append(updateForm);
-//
-//    })
-//
-//    $('.trips-list').on('submit', '.form-update-hike', function (event) {
-//        event.preventDefault();
-//
-//        let updateHikeInfo = {};
-//        let id = $(this).attr('id');
-//        let returnUpdate = $(this).closest('.hike-notes');
-//
-//        //create updated object
-//        updateHikeInfo.id = id
-//        updateHikeInfo.status = $('.form-update-hike [name=status]:checked').val();
-//
-//        if (updateHikeInfo.status == false) {
-//            updateHikeInfo.dateCompleted = ''
-//            updateHikeInfo.notes = ''
-//        } else {
-//            updateHikeInfo.dateCompleted = $('.form-update-hike [name=dateCompleted]').val();
-//            updateHikeInfo.notes = $('.form-update-hike textarea').val();
-//        }
-//
-//
-//
-//        //reach out and update information
-//        updateTrip(id, updateHikeInfo, returnUpdate);
-//    })
-//
-//    $('.trips-list').on('click', '.fa-minus-circle', function () {
-//        let item = $(this).next().attr('id')
-//        deleteTrip(item);
-//    })
-//
-//
-//
-//});
-
-
-$(document).ready(function () {
-	$('.sign-up').hide();
-	$('.nav-signout').hide();
-	$('.nav-saved').hide();
-	$('.nav-search').hide();
-	$('.search-options').hide();
-	$('.search-careers-input').hide();
-	$('.search-colleges-input').hide();
-	$('.college-results').hide();
-	$('.career-results').hide();
-	$('.college-more-detail').hide();
-	$('.saved-options').hide();
-	$('.comparison').hide();
-
-	getAllJobs();
-	getCollegeSelection();
-
-	$('.sign-up-btn').on('click', function () {
-		$('.how-it-works').hide();
-		$('.sign-up').show();
-		$('.returning-user').hide();
-		$('.create-new').show();
-		$('.header-intro').hide();
-		$('.header-image').css('height', '100%')
-
-	})
-
-	$('.nav-login').on('click', function () {
-		$('.how-it-works').hide();
-		$('.sign-up').show();
-		$('.returning-user').show();
-		$('.create-new').hide();
-		$('.header-intro').hide();
-		$('.header-image').css('height', '100%')
-	})
-
-	$('.nav-sign-up').on('click', function () {
-		$('.how-it-works').hide();
-		$('.sign-up').show();
-		$('.returning-user').hide();
-		$('.create-new').show();
-		$('.header-intro').hide();
-		$('.header-image').css('height', '100%')
-	})
-
-	$('.form-returning-user').on('submit', function (event) {
-		event.preventDefault();
-		$('.sign-up').hide();
-		$('.header-image').hide();
-		$('.search-options').show();
-		$('.nav-saved').show();
-	})
-
-	$('.form-create-new').on('submit', function (event) {
-		event.preventDefault();
-		$('.sign-up').hide();
-		$('.header-image').hide();
-		$('.search-options').show();
-		$('.nav-saved').show();
-	})
-
-	$('.search-careers').on('click', function () {
-		$('.search-careers-input').show();
-		$('.search-careers').hide();
-		$('.search-colleges').show();
-		$('.search-colleges-input').hide();
-		$('.career-results').hide();
-	})
-
-	$('.search-colleges').on('click', function () {
-		$('.search-careers-input').hide();
-		$('.search-careers').show();
-		$('.search-colleges').hide();
-		$('.search-colleges-input').show();
-		$('.career-results').hide();
-	})
-
-	$('.search-colleges-input').on('submit','.form-search-colleges', function(event){
-
-		event.preventDefault();
-		let degree = $( "#degree-select option:selected" ).val();
-		let speciality = '01'+$( "#speciality-select option:selected" ).val();
-		
-
-		let region = undefined
-		let state = undefined
-		if($('.search-colleges-input #state-select').val()== 'Select State'){
-			region = $( "#region-select option:selected" ).val();
-			
-		} else {
-			state = $( "#state-select option:selected" ).val();
-		}
-
-		let collegeSearch = {
-			degree : degree, 
-			speciality : speciality, 
-			region : region,
-			state : state
-
-		}
-
-		getCollegeSearch(collegeSearch)
-
-		$('.search-options').hide();
-		$('.college-results').show();
-
-	})
-
-	$('.search-careers-input').on('submit','.form-search-careers', function(event){
-		event.preventDefault();
-		let career = $( "#career-select option:selected" ).val();
-		let state = $("#state-career-select option:selected").val();
-
-		let search = {
-			career : career, 
-			state : state
-		}
-
-		getCareerSelection(search) 
-		$('.search-options').hide();
-		$('.career-results').show();
-	})
-
-	$('.new-search').on('click', function(){
-		$('.college-results').hide();
-		$('.search-options').show();
-		$('.career-results').hide();
-
-	})
-
-	$('.navigation').on('click','.nav-saved',function(){
-		$('.how-it-works').hide();
-		$('header').hide();
-		$('.how-it-works').hide();
-		$('.sign-up').hide();
-		$('.search-options').hide();
-		$('.college-results').hide();
-		$('.college-more-detail').hide();
-		$('.career-results').hide();
-		$('.saved-options').show();
-		let user = {
-			user : 'riley'
-		}
-		getSavedInfo(user)
-
-	})
-
-	$('.more-details').on('click', function() {
-		$('.college-results').hide();
-		$('.search-options').hide();
-		$('.college-more-detail').show();
-		$('.career-results').hide();
-	})
-
-	$('.college-results').on('click','.more-details',function(event){
-		const individualCollege = event.target.id
-		getIndividualCollege(individualCollege);
-		$('.college-more-detail').show();
-		$('.college-results').hide();
-		$('.search-options').hide();
-		$('.career-results').hide();
-
-	})
-
-	// $('.compare-button button').on('click', function(){
-	// 	console.log('fired')
-	// 	$('.college-results').hide();
-	// 	$('.search-options').hide();
-	// 	$('.college-more-detail').hide();
-	// 	$('.career-results').hide();
-	// 	$('.saved-options').show();
-	// })
-
-	$('.compare-button').on('click',function(){
-		$('.college-results').hide();
-		$('.search-options').hide();
-		$('.college-more-detail').hide();
-		$('.career-results').hide();
-		$('.saved-options').hide();
-		$('.comparison').show();
-	})
-
-	$('.career-results').on('click','.save-career-btn', function(){
-		let career = {
-			career : '', 
-			state : '', 
-			nat_a_median : '',
-			state_a_median : '', 
-			education : '', 
-			experience : '', 
-			user : 'riley'
-		}
-
-		career.career = $('.career-results').find('#title-value').text()
-		career.state = $('.career-results').find('#state-value').text()
-		career.nat_a_median = $('.career-results').find('#nat-median-value').text()
-		career.state_a_median = $('.career-results').find('#st-median-value').text()
-		career.education = $('.career-results').find('#education-value').text()
-		career.experience = $('.career-results').find('#experience-value').text()
-
-		addCareer(career)
-	})
-
-	$('.college-more-detail').on('click','.save-college-btn',function(event){
-		event.preventDefault();
-		let query = {
-			id : event.target.id
-		}
-		
-		addCollege(query)
-	})
-
-	$('.form-search-colleges')
-
-	$('.home').on('click', function () {
-		location.reload();
-	})
-
-	//expand list toggles
-    $('.college-more-detail').on('click','.accordion', function () {
-        this.classList.toggle("active");
-        $(this).next().toggle();
-    })
-
-    $('.modal-fill').on('click','.accordion', function () {
-        this.classList.toggle("active");
-        $(this).next().toggle();
-    })
-
-    $("input:checkbox").on('click', function() {
-  		var $box = $(this);
-  		if ($box.is(":checked")) {
-   		var group = "input:checkbox[name='" + $box.attr("name") + "']";
-    	$(group).prop("checked", false);
-    		$box.prop("checked", true);
-  		} else {
-    	$box.prop("checked", false);
-  		}
-	});
-
-
-
-let modal = document.getElementById('myModal');
-let span = document.getElementsByClassName("close")[0];
-
-span.onclick = function() {
-    modal.style.display = "none";
+//get college info for building dropdowns
+function getCollegeSelection(){
+	   $.ajax({
+           url: "http://localhost:8080/college",
+           type: "GET",
+           dateType: "json",
+           contentType: "application/json"
+       })
+       .done(function (results) {
+           buildCollegeDropdown(results);
+       })
+       .fail(function (jxhqr, error, errorThrown) {
+           console.log(jxhqr);
+           console.log(error);
+           console.log(errorThrown);
+           displayError('Oops! Something went wrong')
+       })
 }
 
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
+// get job info for building dropdowns
+function getAllJobs() {
+   $.ajax({
+           url: "http://localhost:8080/jobs",
+           type: "GET",
+           dateType: "json",
+           contentType: "application/json"
+       })
+       .done(function (results) {
+           buildCareerDropdown(results)
+           
+       })
+       .fail(function (jxhqr, error, errorThrown) {
+           console.log(jxhqr);
+           console.log(error);
+           console.log(errorThrown);
+           displayError('Oops! Something went wrong')
+       })
 }
 
+//get results for career query
+function getCareerSelection(search) {
+	$.ajax({
+		url:"http://localhost:8080/career-search/?career="+search.career+'&state='+search.state,
+		type:"GET", 
+		dataType: "json", 
+		contentType: "application/json"
+	})
+	.done(function(results){
+		buildCareerResults(results);
+	})
+	.fail(function(jxhqr, error, errorThrown){
+		console.log(jxhqr);
+		console.log(error);
+		console.log(errorThrown);
+		alert('error');
+	})
+}
+
+//get results for college query
+function getCollegeSearch(search) {
+	$.ajax({
+		url:"http://localhost:8080/college-search/?degree="+search.degree+'&speciality='+search.speciality + '&region='+search.region+'&state=' + search.state,
+		type:"GET", 
+		dataType: "json", 
+		contentType: "application/json"
+	})
+	.done(function(results){
+		buildCollegeResults(results)
+	})
+	.fail(function(jxhqr, error, errorThrown){
+		console.log(jxhqr);
+		console.log(error);
+		console.log(errorThrown);
+		alert('error');
+	})
+}
+
+//get college details
+function getIndividualCollege(id){
+	$.ajax({
+		url:'http://localhost:8080/search/'+id, 
+		type:'GET', 
+		dataType:'json', 
+		contentType: 'application/json'
+	})
+	.done(function(results){
+		buildCollegeDetail(results,$('.college-more-detail'),'detail_level')
+	})
+	.fail(function(jxhqr, error, errorThrown){
+		console.log(jxhqr);
+		console.log(error);
+		console.log(errorThrown)
+		alert('error')
+	})
+}
+
+// add career info to user
+function addCareer(careerInfo) {
+   $.ajax({
+           url: "http://localhost:8080/career/create-new",
+           type: "POST",
+           dataType: "json",
+           data: JSON.stringify(careerInfo),
+           contentType: 'application/json'
+       })
+       .done(function (results) {
+           displayError('Record Added');
+       })
+       .fail(function (jxhqr, error, errorThrown) {
+           console.log(jxhqr);
+           console.log(error);
+           console.log(errorThrown);
+       })
+}
+
+// add college info to user
+function addCollege(collegeId) {
+   $.ajax({
+           url: "http://localhost:8080/save-info",
+           type: "POST",
+           dataType: "json",
+           data: JSON.stringify(collegeId),
+           contentType: 'application/json'
+       })
+       .done(function (results) {
+           displayError(results);
+       })
+       .fail(function (jxhqr, error, errorThrown) {
+           console.log(jxhqr);
+           console.log(error);
+           console.log(errorThrown);
+       })
+}
+
+//get saved info by user
+function getSavedInfo(user) {
+   $.ajax({
+           url: "http://localhost:8080/user-saved-info",
+           type: "POST",
+           dataType: "json",
+           data: JSON.stringify(user),
+           contentType: 'application/json'
+       })
+       .done(function (results) {
+       	   buildSavedInfo(results)
+       })
+       .fail(function (jxhqr, error, errorThrown) {
+           console.log(jxhqr);
+           console.log(error);
+           console.log(errorThrown);
+       })
+}
+
+//get info for saved modals
+function getInfoForModal(info){
+	   $.ajax({
+           url: "http://localhost:8080/modal-info",
+           type: "POST",
+           dataType: "json",
+           data: JSON.stringify(info),
+           contentType: 'application/json'
+       })
+       .done(function (results) {
+       		if (info.category === 'college'){
+       			buildCollegeDetail(results[0],$('.modal-fill'))	
+       		} else {
+       			buildModal(results[0])
+       		}
+       })
+       .fail(function (jxhqr, error, errorThrown) {
+           console.log(jxhqr);
+           console.log(error);
+           console.log(errorThrown);
+       })
+}
+
+//compare college and career
+function compareCollege(query){
+	   $.ajax({
+           url: "http://localhost:8080/compare",
+           type: "POST",
+           dataType: "json",
+           data: JSON.stringify(query),
+           contentType: 'application/json'
+       })
+       .done(function (results) {
+       		buildCompareResults(results)
+
+       })
+       .fail(function (jxhqr, error, errorThrown) {
+           console.log(jxhqr);
+           console.log(error);
+           console.log(errorThrown);
+       })
+}
+
+//delete info from user
+function deleteInfo(query) {
+   $.ajax({
+           url: "http://localhost:8080/delete-info",
+           type: "DELETE",
+           dataType: "json",
+           data: JSON.stringify(query),
+           contentType: 'application/json'
+       })
+       .done(function (results) {
+       		$('.saved-options').empty();
+       		let user = {
+			user : activeUser
+			}
+       		getSavedInfo(user);
+       	   	displayError('Record Deleted')
+       })
+       .fail(function (jxhqr, error, errorThrown) {
+           console.log(jxhqr);
+           console.log(error);
+           console.log(errorThrown);
+       })
+}
+
+//format numbers
+const numberWithCommas = (x) => {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+//build html for api results 
+
+//fading messages to display alerts and errors
+function displayError(message) {
+   $(".error-message span").html(message);
+   $(".error-message").fadeIn();
+   $(".error-message").fadeOut(10000);
+};
+
+//build career dropdown input
 function buildCareerDropdown(results){
 	let htmlOutput = '';
 	let jobTitles = results[0];
@@ -593,9 +298,57 @@ function buildCareerDropdown(results){
 	$('.search-careers-input').append(htmlOutput)
 }
 
+//build input for college values
+function buildCollegeDropdown(categories){
+	let programs = categories[0];
+	let state = categories[1];
+	let region = categories[2];
 
+	let htmlOutput = ''
+
+	htmlOutput += '<form class="form-search-colleges">'
+	htmlOutput += '<legend> Search Colleges </legend>'
+	htmlOutput += '<div class="center-on-page">'
+	htmlOutput += '<div class="select">'
+	htmlOutput += '<select name="degree" id="degree-select">'
+	htmlOutput += '<option>Select Degree</option>'
+	htmlOutput += '<option value="2">Associates</option>'
+	htmlOutput += '<option value="3,4">Bachelors</option>'
+	htmlOutput += '</select>'
+	htmlOutput += '</div>'
+	htmlOutput += '<div class="select">'
+	htmlOutput += '<select name="speciality" id="speciality-select">'
+	htmlOutput += '<option>Select Speciality</option>'
+
+	for(let i=0; i< programs.length; i++) {
+		htmlOutput += `<option value="${programs[i].PROGRAM}"">${programs[i].PROGRAM}</option>`
+	}
+
+	htmlOutput += '</select></div><div class="select"><select name="region" id="region-select"><option>Select Region</option>'
+
+	for(let i=0; i<region.length; i++) {
+		htmlOutput += `<option value=${region[i].CODE}>${region[i].REGION}</option>`
+	}
+
+	htmlOutput += '</select></div><div class="select"><select name="state" id="state-select"><option>Select State</option>'
+
+	for(let i=0; i<state.length; i++) {
+		htmlOutput += `<option value=${state[i].Abbreviation}>${state[i].State}</option>`
+	}
+
+	htmlOutput += '</select></div></div><input type="submit" value="Submit"></form>'
+
+	$('.search-colleges-input').append(htmlOutput)
+}
+
+
+
+
+
+//build results for colleges
 function buildCollegeResults(results){
-	let htmlOutput = '<div class="row">'
+
+	let htmlOutput = '<h1>Search Results </h1><div class="row">'
 	
 	for(let i=0; i< results.length; i++) {
 
@@ -620,6 +373,7 @@ function buildCollegeResults(results){
 
 }
 
+//build html for career results
 function buildCareerResults(results){
 	
 	let htmlOutput = ''
@@ -639,8 +393,8 @@ function buildCareerResults(results){
 	}
 			htmlOutput += `<div class="row career-column"><div class="col-6 star-img right"></div><div class="col-6">`
 			htmlOutput += `<p><span class="heavy emphasis orange" id="title-value">${national.OCC_TITLE}</span><br><span class="light" id="state-value"> ${state_ab}</span></p>`
-			htmlOutput += `<ul><li><span class="heavy">National Median Salary:</span> <span id="nat-median-value">${national.NAT_A_MEDIAN}</span></li>`
-    		htmlOutput += `<li><span class="heavy"> Region Median Salary:</span> <span id="st-median-value">${state_median}</span></li>`
+			htmlOutput += `<ul><li><span class="heavy">National Median Salary:</span> <span id="nat-median-value">${numberWithCommas(national.NAT_A_MEDIAN)}</span></li>`
+    		htmlOutput += `<li><span class="heavy"> Region Median Salary:</span> <span id="st-median-value">${numberWithCommas(state_median)}</span></li>`
     		htmlOutput += `<li><span class="heavy">Degree Requires:</span> <span id="education-value">${national.EDUCATION}</span></li>`
     		htmlOutput += `<li><span class="heavy">Experience Needed:</span> <span id="experience-value">${national.WORK_EXPERIENCE}</span></li>`
     		htmlOutput += `</ul></div></div><div class="row"><div class="col-12">`
@@ -649,23 +403,17 @@ function buildCareerResults(results){
 
    $('.career-results').append(htmlOutput)
 
-
 }
 
-$('.search-colleges-input').on('change','#region-select',function(){
-     $('.search-colleges-input #state-select').val($("#state-select option:first").val());
-});
-
-$('.search-colleges-input').on('change','#state-select',function(){
-     $('.search-colleges-input #region-select').val($("#region-select option:first").val());
-});
-
-function buildCollegeDetail(college, input){
+//build college detail for saved info modal and for college searches
+function buildCollegeDetail(college, input, detail){
 	let htmlOutput = ''
 	let tags = []
 	let speciality = []
 
 	tags.push(college.CONTROL)
+
+	//interate through tags
 
 	if(college.RELAFFIL !== 'NULL') {
 		tags.push(college.RELAFFIL)
@@ -709,14 +457,13 @@ function buildCollegeDetail(college, input){
 
 
 	for(let prop in college){
-
 		if(prop.match(/01/)){
 			speciality.push([prop.slice(2),(Math.round(college[prop]*100))])
-			console.log(college[prop])
 		}
 
 	}
 
+	//arrange specialties by popularity
 	speciality.sort(function(a,b){
 		return b[1] - a[1]
 	})
@@ -725,7 +472,7 @@ function buildCollegeDetail(college, input){
 
 	htmlOutput += '<div class="row career-column">'
 	htmlOutput += '<div class="col-12">'    
-	htmlOutput += `<p><span class="heavy emphasis">${college.INSTNM}</span><br><span class="light"> ${college.CITY}, ${college.STABBR}</span><br>${college.UGDS} undergraduate students</p>`
+	htmlOutput += `<p><span class="heavy emphasis">${college.INSTNM}</span><br><span class="light"> ${college.CITY}, ${college.STABBR}</span><br>${numberWithCommas(college.UGDS)} undergraduate students</p>`
     htmlOutput += `<ul>` 
     htmlOutput +=  `<li><span class="heavy"> School Details: </span>`
 
@@ -737,7 +484,7 @@ function buildCollegeDetail(college, input){
     	}
     }
 
-    htmlOutput  += `</li><li><span class="heavy">Average Annual Cost:</span> $ ${college.NPT4}</li>` 
+    htmlOutput  += `</li><li><span class="heavy">Average Annual Cost:</span> $ ${numberWithCommas(college.NPT4)}</li>` 
     htmlOutput 	+= `<li><span class="heavy"> Graduation Rate:</span> ${Math.round(college.C150_L4_POOLED_SUPP*100)} %</li>`
     htmlOutput 	+= `<li><span class="heavy">Average Debt:</span> $${college.GRAD_DEBT_MDN_SUPP}</li>`
     htmlOutput 	+= `<button class="accordion">`
@@ -752,27 +499,27 @@ function buildCollegeDetail(college, input){
     htmlOutput 	+= `</tr>`
     htmlOutput 	+= `<tr>`
     htmlOutput 	+= `<td><span class="heavy"> Average Annual Cost : </span></td>`
-    htmlOutput 	+= `<td>$${college.NPT4} </td>`
+    htmlOutput 	+= `<td>$${numberWithCommas(college.NPT4)} </td>`
     htmlOutput 	+= `</tr>`
     htmlOutput 	+= `<tr>`
     htmlOutput 	+= `<td><span class="heavy"> $0 - $30,000 : </span> </td>`
-    htmlOutput 	+= `<td>$${college.NPT41} </td>`
+    htmlOutput 	+= `<td>$${numberWithCommas(college.NPT41)} </td>`
     htmlOutput 	+= `</tr>`
     htmlOutput 	+= `<tr>`
     htmlOutput 	+= `<td><span class="heavy"> $30,001-$48,000 : </span></td>`
-    htmlOutput 	+= `<td>$${college.NPT42}</td>`
+    htmlOutput 	+= `<td>$${numberWithCommas(college.NPT42)}</td>`
     htmlOutput 	+= `</tr>`
     htmlOutput 	+= `<tr>`
     htmlOutput 	+= `<td><span class="heavy"> $48,001-$75,000 : </span>  </td>`
-    htmlOutput 	+= `<td>$${college.NPT43} </td>`
+    htmlOutput 	+= `<td>$${numberWithCommas(college.NPT43)} </td>`
     htmlOutput 	+= `</tr>`
     htmlOutput 	+= `<tr>`
     htmlOutput 	+= `<td><span class="heavy"> $75,001-$110,000 : </span> </td>`
-    htmlOutput 	+= `<td>$${college.NPT44} </td>`
+    htmlOutput 	+= `<td>$${numberWithCommas(college.NPT44)} </td>`
     htmlOutput 	+= `</tr>`
     htmlOutput 	+= `<tr>`
     htmlOutput 	+= `<td><span class="heavy"> $75,001-$110,000 : </span> </td>`
-    htmlOutput 	+= `<td>$${college.NPT45} </td>`
+    htmlOutput 	+= `<td>$${numberWithCommas(college.NPT45)} </td>`
     htmlOutput 	+= `</tr>`
     htmlOutput 	+= `</table>`
     htmlOutput 	+= `</div>`
@@ -795,86 +542,22 @@ function buildCollegeDetail(college, input){
     }
 
     htmlOutput += '</ul></div></div>'
-    htmlOutput += '<div class="row">'
-    htmlOutput += '<div class="col-12">'
-    htmlOutput += `<button class="save-college-btn" id=${college._id}> Save College</button>`
-    htmlOutput += '</div></div></div'
+    
+    // if not modal add save button 
+    if(detail == 'detail_level') {
+    	htmlOutput += '<div class="row">'
+    	htmlOutput += '<div class="col-12">'
+    	htmlOutput += `<button class="save-college-btn" id=${college._id}> Save College</button>`
+    	htmlOutput += `</div></div>`
+    	htmlOutput += `<p class="return-search new-search center"><a href="#"> return to search </a></p>`
+    }
+
+    htmlOutput += `</div>`
 
     input.append(htmlOutput);
 }
 
-function buildCollegeDropdown(categories){
-	let programs = categories[0];
-	let state = categories[1];
-	let region = categories[2];
-
-	let htmlOutput = ''
-
-	htmlOutput += '<form class="form-search-colleges">'
-	htmlOutput += '<legend> Search Colleges </legend>'
-	htmlOutput += '<div class="center-on-page">'
-	htmlOutput += '<div class="select">'
-	htmlOutput += '<select name="degree" id="degree-select">'
-	htmlOutput += '<option>Select Degree</option>'
-	htmlOutput += '<option value="2">Associates</option>'
-	htmlOutput += '<option value="3,4">Bachelors</option>'
-	htmlOutput += '</select>'
-	htmlOutput += '</div>'
-	htmlOutput += '<div class="select">'
-	htmlOutput += '<select name="speciality" id="speciality-select">'
-	htmlOutput += '<option>Select Speciality</option>'
-
-	for(let i=0; i< programs.length; i++) {
-		htmlOutput += `<option value="${programs[i].PROGRAM}"">${programs[i].PROGRAM}</option>`
-	}
-
-	htmlOutput += '</select></div><div class="select"><select name="region" id="region-select"><option>Select Region</option>'
-
-	for(let i=0; i<region.length; i++) {
-		htmlOutput += `<option value=${region[i].CODE}>${region[i].REGION}</option>`
-	}
-
-	htmlOutput += '</select></div><div class="select"><select name="state" id="state-select"><option>Select State</option>'
-
-	for(let i=0; i<state.length; i++) {
-		htmlOutput += `<option value=${state[i].Abbreviation}>${state[i].State}</option>`
-	}
-
-	htmlOutput += '</select></div></div><input type="submit" value="Submit"></form>'
-
-	$('.search-colleges-input').append(htmlOutput)
-}
-
-$('.saved-options').on('click','.info', function(event){
-
-	let categoryName = $(this).next().next().attr('name'); 
-	let idValue = event.target.closest('label').id;
-
-	$('.modal-fill').empty();
-
-	var modal = document.getElementById('myModal');
-	modal.style.display = "block";
-
-	let query = {
-		category : categoryName, 
-		id : idValue
-	}
-
-	getInfoForModal(query)
-
-
-})
-
-$('.saved-options').on('click','.delete', function(event){
-	let query = {
-		id : event.target.closest('label').id, 
-		category :$(this).next().attr('name')
-	}
-
-	deleteInfo(query)
-
-})
-
+//build saved info for users
 function buildSavedInfo(results){
 	let htmlOutput = ''
 
@@ -902,224 +585,488 @@ function buildSavedInfo(results){
 
 	$('.saved-options').append(htmlOutput);
 
-    }
-
-	function buildModal(info){
-			console.log(info)
-			let htmlOutput = ''
-
-			htmlOutput += `<div class="col-12">`
-			htmlOutput += `<p><span class="heavy emphasis orange">${info.career}</span><br><span class="light" id="state-value"> ${info.state}</span></p>`
-			htmlOutput += `<ul><li><span class="heavy">National Median Salary:</span> <span id="nat-median-value">${info.nat_a_median}</span></li>`
-    		htmlOutput += `<li><span class="heavy"> Region Median Salary:</span> <span id="st-median-value">${info["st-median-value"]}</span></li>`
-    		htmlOutput += `<li><span class="heavy">Degree Requires:</span> <span id="education-value">${info.education}</span></li>`
-    		htmlOutput += `<li><span class="heavy">Experience Needed:</span> <span id="experience-value">${info.experience}</span></li>`
-    		htmlOutput += `</ul></div></div>`
-
-    		$('.modal-fill').append(htmlOutput)
 }
 
-function addCareer(careerInfo) {
-   $.ajax({
-           url: "http://localhost:8080/career/create-new",
-           type: "POST",
-           dataType: "json",
-           data: JSON.stringify(careerInfo),
-           contentType: 'application/json'
-       })
-       .done(function (results) {
-           alert(results);
-       })
-       .fail(function (jxhqr, error, errorThrown) {
-           console.log(jxhqr);
-           console.log(error);
-           console.log(errorThrown);
-       })
+//build modal detail for the saved info
+function buildModal(info){
+	let htmlOutput = ''
+
+	htmlOutput += `<div class="col-12">`
+	htmlOutput += `<p><span class="heavy emphasis orange">${info.career}</span><br><span class="light" id="state-value"> ${info.state}</span></p>`
+	htmlOutput += `<ul><li><span class="heavy">National Median Salary:</span> <span id="nat-median-value">${numberWithCommas(info.nat_a_median)}</span></li>`
+    htmlOutput += `<li><span class="heavy"> Region Median Salary:</span> <span id="st-median-value">${numberWithCommas(info["st-median-value"])}</span></li>`
+    htmlOutput += `<li><span class="heavy">Degree Requires:</span> <span id="education-value">${info.education}</span></li>`
+    htmlOutput += `<li><span class="heavy">Experience Needed:</span> <span id="experience-value">${info.experience}</span></li>`
+    htmlOutput += `</ul></div></div>`
+
+    $('.modal-fill').append(htmlOutput)
 }
 
-function addCollege(collegeId) {
-   $.ajax({
-           url: "http://localhost:8080/save-info",
-           type: "POST",
-           dataType: "json",
-           data: JSON.stringify(collegeId),
-           contentType: 'application/json'
-       })
-       .done(function (results) {
-           alert(results);
-       })
-       .fail(function (jxhqr, error, errorThrown) {
-           console.log(jxhqr);
-           console.log(error);
-           console.log(errorThrown);
-       })
+
+//build html for comparison results
+function buildCompareResults(results){
+
+	let calculationData = {}
+
+	if(results[0][0]["st_a_median"] === 'No data' || results[0][0]["st_a_median"] === ''){
+		let salary = results[0][0]['nat_a_median'].replace(',','')
+		calculationData.salary = parseInt(salary)
+	} else{
+		let salaryNat = results[0][0]['st_a_median'].replace(',','')
+		calculationData.salary = parseInt(salaryNat)
+	}
+
+	let ROI = ((calculationData.salary * 20) - 827136 - (results[1][0]['NPT4'] * 4))
+	console.log(ROI)
+
+	let htmlOutput = '' 
+	htmlOutput += '<div class="row">'
+	htmlOutput += '<div class="col-12">'
+	htmlOutput += `<p><span class="light">as a </span><span class="heavy emphasis orange">${results[0][0]['career']}</span><br><span class="light"> attending</span><span class="heavy emphasis orange"> ${results[1][0]['INSTNM']}</span></p>`
+	htmlOutput += `<p><span class="light"> return on investment over 20 years: </span><br><span class="heavy emphasis orange">$${ROI}</span></p>`
+	htmlOutput += '</div></div>'
+	htmlOutput += `<p class="new-search center back"><a href="#"> back </a></p>`
+
+	$('.comparison').append(htmlOutput)
 }
 
-function getSavedInfo(user) {
-   $.ajax({
-           url: "http://localhost:8080/user-saved-info",
-           type: "POST",
-           dataType: "json",
-           data: JSON.stringify(user),
-           contentType: 'application/json'
-       })
-       .done(function (results) {
-       	   buildSavedInfo(results)
-       })
-       .fail(function (jxhqr, error, errorThrown) {
-           console.log(jxhqr);
-           console.log(error);
-           console.log(errorThrown);
-       })
-}
+//page manipulation and trigger events
 
-function deleteInfo(query) {
-   $.ajax({
-           url: "http://localhost:8080/delete-info",
-           type: "DELETE",
-           dataType: "json",
-           data: JSON.stringify(query),
-           contentType: 'application/json'
-       })
-       .done(function (results) {
-       		$('.saved-options').empty();
-       		let user = {
+$(document).ready(function () {
+	$('.sign-up').hide();
+	$('.nav-signout').hide();
+	$('.nav-saved').hide();
+	$('.nav-search').hide();
+	$('.search-options').hide();
+	$('.search-careers-input').hide();
+	$('.search-colleges-input').hide();
+	$('.college-results').hide();
+	$('.career-results').hide();
+	$('.college-more-detail').hide();
+	$('.saved-options').hide();
+	$('.comparison').hide();
+	$('.error-message').hide();
+
+
+	//set up for search input
+	getAllJobs();
+	getCollegeSelection();
+
+
+	//set background for log in options
+	$('.sign-up-btn').on('click', function (event) {
+		event.preventDefault();
+		$('.how-it-works').hide();
+		$('.sign-up').show();
+		$('.returning-user').hide();
+		$('.create-new').show();
+		$('.header-intro').hide();
+		$('.header-image').css('height', '100%')
+
+	})
+
+	//for returing users
+	$('.nav-login').on('click', function () {
+		$('.how-it-works').hide();
+		$('.sign-up').show();
+		$('.returning-user').show();
+		$('.create-new').hide();
+		$('.header-intro').hide();
+		$('.header-image').css('height', '100%')
+	})
+
+	//for new users
+	$('.nav-sign-up').on('click', function () {
+		$('.how-it-works').hide();
+		$('.sign-up').show();
+		$('.returning-user').hide();
+		$('.create-new').show();
+		$('.header-intro').hide();
+		$('.header-image').css('height', '100%')
+	})
+
+	//for new searches
+	$('.nav-search').on('click',function(){
+		$('.comparison').hide();
+		$('.college-results').hide();
+		$('.search-options').show();
+		$('.career-results').hide();
+		$('.career-results').empty();
+		$('.college-results').empty();
+		$('.college-more-detail').empty();
+		$('.comparison').empty();
+	})
+
+	//nav bar new search
+	$('.new-search').on('click', function(){
+		$('.comparison').hide();
+		$('.college-results').hide();
+		$('.search-options').show();
+		$('.career-results').hide();
+		$('.career-results').empty();
+		$('.college-results').empty();
+		$('.college-more-detail').empty();
+
+	})
+
+	//navigation for saved values
+	$('.navigation').on('click','.nav-saved',function(){
+		$('.how-it-works').hide();
+		$('header').hide();
+		$('.how-it-works').hide();
+		$('.sign-up').hide();
+		$('.search-options').hide();
+		$('.college-results').hide();
+		$('.college-more-detail').hide();
+		$('.career-results').hide();
+		$('.saved-options').show();
+		let user = {
 			user : 'riley'
-			}
-       		getSavedInfo(user);
-       	   console.log(results)
-       })
-       .fail(function (jxhqr, error, errorThrown) {
-           console.log(jxhqr);
-           console.log(error);
-           console.log(errorThrown);
-       })
-}
+		}
+		getSavedInfo(user)
 
-
-function getInfoForModal(info){
-	   $.ajax({
-           url: "http://localhost:8080/modal-info",
-           type: "POST",
-           dataType: "json",
-           data: JSON.stringify(info),
-           contentType: 'application/json'
-       })
-       .done(function (results) {
-       		if (info.category === 'college'){
-       			buildCollegeDetail(results[0],$('.modal-fill'))	
-       		} else {
-       			buildModal(results[0])
-       		}
-       	   
-       })
-       .fail(function (jxhqr, error, errorThrown) {
-           console.log(jxhqr);
-           console.log(error);
-           console.log(errorThrown);
-       })
-}
-
-
-
-function getCollegeSelection(){
-	   $.ajax({
-           url: "http://localhost:8080/college",
-           type: "GET",
-           dateType: "json",
-           contentType: "application/json"
-       })
-       .done(function (results) {
-           // assign active user for further interactions
-           buildCollegeDropdown(results);
-       })
-       .fail(function (jxhqr, error, errorThrown) {
-           console.log(jxhqr);
-           console.log(error);
-           console.log(errorThrown);
-           displayError('Oops! Something went wrong')
-       })
-}
-
-function getAllJobs() {
-   $.ajax({
-           url: "http://localhost:8080/jobs",
-           type: "GET",
-           dateType: "json",
-           contentType: "application/json"
-       })
-       .done(function (results) {
-           // assign active user for further interactions
-           buildCareerDropdown(results)
-           
-       })
-       .fail(function (jxhqr, error, errorThrown) {
-           console.log(jxhqr);
-           console.log(error);
-           console.log(errorThrown);
-           displayError('Oops! Something went wrong')
-       })
-}
-
-function getCareerSelection(search) {
-	$.ajax({
-		url:"http://localhost:8080/career-search/?career="+search.career+'&state='+search.state,
-		type:"GET", 
-		dataType: "json", 
-		contentType: "application/json"
 	})
-	.done(function(results){
-		console.log(results)
-		buildCareerResults(results);
-	})
-	.fail(function(jxhqr, error, errorThrown){
-		console.log(jxhqr);
-		console.log(error);
-		console.log(errorThrown);
-		alert('error');
-	})
-}
 
-function getCollegeSearch(search) {
-	$.ajax({
-		url:"http://localhost:8080/college-search/?degree="+search.degree+'&speciality='+search.speciality + '&region='+search.region+'&state=' + search.state,
-		type:"GET", 
-		dataType: "json", 
-		contentType: "application/json"
-	})
-	.done(function(results){
-		buildCollegeResults(results)
-	})
-	.fail(function(jxhqr, error, errorThrown){
-		console.log(jxhqr);
-		console.log(error);
-		console.log(errorThrown);
-		alert('error');
-	})
-}
+	  //create new user
+   $('.form-create-new').on('submit', function (event) {
 
-function getIndividualCollege(id){
-	$.ajax({
-		url:'http://localhost:8080/search/'+id, 
-		type:'GET', 
-		dataType:'json', 
-		contentType: 'application/json'
-	})
-	.done(function(results){
-		buildCollegeDetail(results,$('.college-more-detail'))
-		console.log(results)
-	})
-	.fail(function(jxhqr, error, errorThrown){
-		console.log(jxhqr);
-		console.log(error);
-		console.log(errorThrown)
-		alert('error')
-	})
-}
+       event.preventDefault();
+       let form = document.body.querySelector('.form-create-new');
 
-const numberWithCommas = (x) => {
-  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-}
+       if (form.checkValidity && !form.checkValidity()) {
+           return;
+       }
+
+       let user = $('.form-create-new [name=username]').val();
+       let password = $('.form-create-new [name=password]').val();
+       let confirmPassword = $('.form-create-new [name=confirmPassword]').val();
+
+       if (password !== confirmPassword) {
+           displayError('Passwords must match!')
+       } else {
+
+           let newUser = {
+               username: user,
+               password: password
+           }
+           createUser(newUser);
+
+           $('.form-create-new [name=username]').val('');
+           $('.form-create-new [name=password]').val('');
+           $('.form-create-new [name=confirmPassword]').val('');
+
+   		   	$('.sign-up').hide();
+			$('.header-image').hide();
+			$('.search-options').show();
+			$('.nav-saved').show();
+			$('.nav-login').hide()
+			$('.nav-demo').hide();
+			$('.nav-signout').show();
+			$('.nav-sign-up').hide();
+			$('.nav-search').show();
+       }
+   })
+
+  
+   //login returning user
+  $('.form-returning-user').on('submit', function (event) {
+       event.preventDefault();
+       let form = document.body.querySelector('.form-returning-user');
+
+       if (form.checkValidity && !form.checkValidity()) {
+           return;
+       }
+       let user = $('.form-returning-user [name=username]').val();
+       let password = $('.form-returning-user [name=password]').val();
+
+       let returingUser = {
+           username: user,
+           password: password
+       }
+       loginUser(returingUser);
+
+       $('.form-returning-user [name=username]').val('');
+       $('.form-returning-user [name=password]').val('');
+
+       	$('.sign-up').hide();
+		$('.header-image').hide();
+		$('.search-options').show();
+		$('.nav-saved').show();
+		$('.nav-login').hide()
+		$('.nav-demo').hide();
+		$('.nav-signout').show();
+		$('.nav-sign-up').hide();
+		$('.nav-search').show();
+   })
 
 
+
+
+
+	//page manipulation for switching career and college search
+
+	$('.search-careers').on('click', function () {
+		$('.search-careers-input').show();
+		$('.search-careers').hide();
+		$('.search-colleges').show();
+		$('.search-colleges-input').hide();
+		$('.career-results').hide();
+		$('.comparison').hide();
+	})
+
+	$('.search-colleges').on('click', function () {
+		$('.search-careers-input').hide();
+		$('.search-careers').show();
+		$('.search-colleges').hide();
+		$('.search-colleges-input').show();
+		$('.career-results').hide();
+		$('.comparison').hide();
+
+	})
+
+	//form submit for college search
+	$('.search-colleges-input').on('submit','.form-search-colleges', function(event){
+
+		event.preventDefault();
+		let degree = $( "#degree-select option:selected" ).val();
+		let speciality = '01'+$( "#speciality-select option:selected" ).val();
+		
+
+		let region = undefined
+		let state = undefined
+
+		if($('.search-colleges-input #state-select').val()== 'Select State'){
+			region = $( "#region-select option:selected" ).val();
+		} else {
+			state = $( "#state-select option:selected" ).val();
+		}
+
+		let collegeSearch = {
+			degree : degree, 
+			speciality : speciality, 
+			region : region,
+			state : state
+
+		}
+
+		getCollegeSearch(collegeSearch)
+
+		$('.search-options').hide();
+		$('.college-results').show();
+	})
+
+	//form submit for career search
+	$('.search-careers-input').on('submit','.form-search-careers', function(event){
+		event.preventDefault();
+		let career = $( "#career-select option:selected" ).val();
+		let state = $("#state-career-select option:selected").val();
+
+		let search = {
+			career : career, 
+			state : state
+		}
+
+		getCareerSelection(search) 
+		$('.search-options').hide();
+		$('.career-results').show();
+	})
+
+	$('.more-details').on('click', function() {
+		$('.college-results').hide();
+		$('.search-options').hide();
+		$('.college-more-detail').show();
+		$('.career-results').hide();
+	})
+
+	$('.college-results').on('click','.more-details',function(event){
+		const individualCollege = event.target.id
+		getIndividualCollege(individualCollege);
+		$('.college-more-detail').show();
+		$('.college-results').hide();
+		$('.search-options').hide();
+		$('.career-results').hide();
+
+	})
+
+	// save career information
+	$('.career-results').on('click','.save-career-btn', function(){
+		let career = {
+			career : '', 
+			state : '', 
+			nat_a_median : '',
+			st_a_median : '', 
+			education : '', 
+			experience : '', 
+			user : 'riley'
+		}
+
+		career.career = $('.career-results').find('#title-value').text()
+		career.state = $('.career-results').find('#state-value').text()
+		career.nat_a_median = $('.career-results').find('#nat-median-value').text()
+		career.st_a_median = $('.career-results').find('#st-median-value').text()
+		career.education = $('.career-results').find('#education-value').text()
+		career.experience = $('.career-results').find('#experience-value').text()
+
+		addCareer(career)
+	})
+
+	//save college information
+	$('.college-more-detail').on('click','.save-college-btn',function(event){
+		event.preventDefault();
+		let query = {
+			id : event.target.id
+		}
+		
+		addCollege(query)
+	})
+
+	// reset search values
+	$('.career-results').on('click','.new-search a',function(){
+		$('.college-results').hide();
+		$('.search-options').show();
+		$('.career-results').hide();
+		$('.career-results').empty();
+		$('.college-results').empty();
+		$('.college-more-detail').empty();
+		$('.search-careers-input #career-select').val($("#career-select option:first").val());
+		$('.search-careers-input #career-state-select').val($("#career-state-select option:firt").val());
+
+	})
+
+	$('.college-results').on('click','.new-search a',function(){
+		$('.college-results').hide();
+		$('.search-options').show();
+		$('.career-results').hide();
+		$('.career-results').empty();
+		$('.college-results').empty();
+		$('.college-more-detail').empty();
+		$('.comparison').empty();
+		$('.search-colleges-input #state-select').val($("#state-select option:first").val());
+		$('.search-colleges-input #region-select').val($("#region-select option:first").val());
+		$('.search-colleges-input #degree-select').val($("#degree-select option:first").val());
+		$('.search-colleges-input #speciality-select').val($("#speciality-select option:first").val());
+
+	})
+
+
+	//compare button for college and career to get ROI
+	$('.saved-options').on('click','.compare-button', function(){
+		alert($('input:checkbox[name="college"]:checked').val())
+		let query = {
+
+		}
+		query.college = $('.saved-options input:checkbox[name="college"]:checked').closest('label').attr('id')
+		query.career = $('.saved-options input:checkbox[name="career"]:checked').closest('label').attr('id')
+		compareCollege(query)
+
+		$('.college-results').hide();
+		$('.search-options').hide();
+		$('.college-more-detail').hide();
+		$('.career-results').hide();
+		$('.saved-options').hide();
+		$('.comparison').show();
+	})
+
+
+	//return from comparison screen
+	$('.comparison').on('click','.back',function(event){
+		$('.comparison').empty();
+		let user = {
+			user : activeUser
+		}
+		getSavedInfo(user)
+		$('.saved-options').show();
+		$('.comparison').hide();
+		$('.saved-options').empty();
+	})
+
+	//return from college detailed view
+
+	$('.college-more-detail').on('click','.return-search',function(){
+		$('.college-more-detail').empty();
+		$('.college-more-detail').hide();
+		$('.college-results').show();
+	})
+
+	//reset 
+	$('.home').on('click', function () {
+		location.reload();
+	})
+
+	//expand list toggles
+    $('.college-more-detail').on('click','.accordion', function () {
+        this.classList.toggle("active");
+        $(this).next().toggle();
+    })
+
+    $('.modal-fill').on('click','.accordion', function () {
+        this.classList.toggle("active");
+        $(this).next().toggle();
+    })
+
+
+    //checkbox manipulation to insure one selection per group
+    $(".saved-options").on('click','input:checkbox', function() {
+  		var $box = $(this);
+  		if ($box.is(":checked")) {
+   		var group = "input:checkbox[name='" + $box.attr("name") + "']";
+    	$(group).prop("checked", false);
+    		$box.prop("checked", true);
+  		} else {
+    	$box.prop("checked", false);
+  		}
+	});
+
+    //input manipulation to insure either state or region selected
+	$('.search-colleges-input').on('change','#region-select',function(){
+     	$('.search-colleges-input #state-select').val($("#state-select option:first").val());
+	});
+
+	$('.search-colleges-input').on('change','#state-select',function(){
+     	$('.search-colleges-input #region-select').val($("#region-select option:first").val());
+	});
+
+
+    //modal activation
+	let modal = document.getElementById('myModal');
+	let span = document.getElementsByClassName("close")[0];
+
+	span.onclick = function() {
+    	modal.style.display = "none";
+	}
+
+	window.onclick = function(event) {
+    	if (event.target == modal) {
+        	modal.style.display = "none";
+    	}
+	}
+
+	//activate the modal information for more info in saved info page
+	$('.saved-options').on('click','.info', function(event){
+
+		let categoryName = $(this).next().next().attr('name'); 
+		let idValue = event.target.closest('label').id;
+
+		$('.modal-fill').empty();
+
+		var modal = document.getElementById('myModal');
+		modal.style.display = "block";
+
+		let query = {
+			category : categoryName, 
+			id : idValue
+		}
+
+		getInfoForModal(query)
+	})
+
+	//delete saved info
+	$('.saved-options').on('click','.delete', function(event){
+		let query = {
+			id : event.target.closest('label').id, 
+			category :$(this).next().attr('name')
+		}
+
+		deleteInfo(query)
+	})
 })

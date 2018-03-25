@@ -34,7 +34,7 @@ graduation rate, and average debt.
 
 ## Working Prototype
 
-Find the working protype here: https://explore-your-options.herokuapp.com
+Find the NODE working protype here: https://explore-your-options.herokuapp.com and REACT one here https://pelosirm.github.io/explore-your-options-capstone-react/build
 
 ## Functionality
 * When the user sets up for an account, they are able to search hikes by location and save them as they are planning out their trips.
@@ -75,3 +75,14 @@ Planned additional features and improvements will allow users to:
     <li>Be able to add additional info with hike, pictures etc</li>
     <li>Add more conditional information around the places visiting ie weather and local campgrounds</li>
 </ul>
+
+## NODE command lines
+* npm install ==> install all node modules
+* nodemon server.js ==> run node server
+* npm test ==> run the tests
+
+## REACT command lines
+* npm install ==> install all node modules
+* npm run build ==> build the react files in the "build" folder
+* npm start ==> run node server on http://127.0.0.1:8080
+* npm test ==> run the tests

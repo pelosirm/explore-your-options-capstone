@@ -157,7 +157,7 @@ app.post('/users/login', (req, res) => {
         })
 })
 
-//get jobs 
+//get jobs for dropdowns
 
 app.get('/jobs', (req,res)=>{
     let results = [];
@@ -187,6 +187,8 @@ app.get('/jobs', (req,res)=>{
         });
 })
 
+
+//get college info for dropdowns
 app.get('/college',(req,res)=>{
     let results = [];
 
@@ -227,6 +229,8 @@ app.get('/college',(req,res)=>{
         })
 })
 
+
+//get career info for dropdowns
 app.get('/career-search',(req,res)=>{
     let results = []
     National
@@ -259,6 +263,8 @@ app.get('/career-search',(req,res)=>{
         })
 })
 
+
+//get college search
 app.get('/college-search',(req,res)=>{
 
     let degree = req.query.degree
@@ -279,7 +285,6 @@ app.get('/college-search',(req,res)=>{
             res.json(colleges)
         })
         .catch(err=>{
-            console.log(err);
             res.status(500).json({
                 error:'something went wrong'
             })
@@ -296,7 +301,6 @@ app.get('/college-search',(req,res)=>{
             res.json(colleges)
         })
         .catch(err=>{
-            console.log(err);
             res.status(500).json({
                 error:'something went wrong'
             })
@@ -306,6 +310,7 @@ app.get('/college-search',(req,res)=>{
 
 })
 
+//search for one college
 app.get('/search/:id',(req,res)=>{
     College
         .findOne({
@@ -321,9 +326,9 @@ app.get('/search/:id',(req,res)=>{
         })
     })
 
-app.post('/save-info',(req,res)=>{
-    console.log(req.body.id)
 
+//add college info
+app.post('/save-info',(req,res)=>{
     College
         .findOne({
             _id : req.body.id
@@ -416,12 +421,14 @@ app.post('/save-info',(req,res)=>{
         })
     })
 
+//add career info
 app.post('/career/create-new', (req, res) => {
     Career
         .create({
             career: req.body.career,
             state: req.body.state,
             nat_a_median: req.body.nat_a_median,
+            st_a_median: req.body.st_a_median,
             education: req.body.education,
             experience: req.body.experience,
             user: req.body.user,
@@ -436,6 +443,7 @@ app.post('/career/create-new', (req, res) => {
 
 });
 
+//get the user saved info
 app.post('/user-saved-info', (req, res) => {
     let results = [];
 
@@ -468,6 +476,7 @@ app.post('/user-saved-info', (req, res) => {
 
 });
 
+//get modal info for saved info
 app.post('/modal-info', (req, res) => {
     if(req.body.category === 'career') {
         Career
@@ -484,17 +493,14 @@ app.post('/modal-info', (req, res) => {
                     })
         })
     } else {
-        console.log(req.body.id)
         SavedInfo
             .find({
                 _id : req.body.id
             })
             .then(function(info){
-                console.log(info)
                 res.json(info)
             })
             .catch(err=>{
-                console.log(err)
                 res.status(500).json({
 
                     error : err
@@ -502,6 +508,42 @@ app.post('/modal-info', (req, res) => {
             })
     }
 });
+
+
+//compare college and career for ROI
+app.post('/compare',(req,res)=>{
+    let results = [];
+    console.log(req.body)
+    Career
+        .find({
+            _id: req.body.career
+        })
+        .then(function(career){
+            results.push(career);
+
+            SavedInfo.find({
+                _id : req.body.college
+            })
+            .then(function(collegeInfo){
+                results.push(collegeInfo);
+                res.json(results);
+            })
+            .catch(err=>{
+                console.log(err)
+                res.status(500).json({
+                    error:'something went wrong'
+                })
+            })
+        })
+        .catch(err=>{
+            console.log(err)
+            res.status(500).json({
+                error:'something went wrong'
+            })
+        })
+})
+
+//delete saved info
 
 app.delete('/delete-info', (req, res) => {
     console.log(req.body)
@@ -537,126 +579,6 @@ app.delete('/delete-info', (req, res) => {
             })
     }
 });
-
-
-// // ---------------- HIKE DATA ENDPOINTS -----------------------------------------------------
-
-
-// //get hikes given user input
-// app.get('/hikes/:location', (req, res) => {
-//     const retrieveCoordinates = getCoordinates(encodeURI(req.params.location));
-
-//     retrieveCoordinates.on('end', function (item) {
-
-//         let coordinates = item
-//         let retrieveHikes = getHikes(coordinates)
-
-//         retrieveHikes.on('end', function (hikes) {
-//             res.json(hikes);
-//         })
-
-//         retrieveHikes.on('error', function (code) {
-//             res.sendStatus(code);
-//         })
-//     })
-
-//     retrieveCoordinates.on('error', function (code) {
-//         res.sendStatus(code);
-//     })
-
-// })
-
-// // get trips by user
-// app.get('/trips/:user', (req, res) => {
-//     let user = req.params.user
-//     Hike
-//         .find({
-//             'account': user
-//         })
-//         .then(function (results) {
-//             res.json(results)
-//         })
-//         .catch(err => {
-//             console.error(err);
-//             res.status(500).json({
-//                 error: 'something went horribly awry'
-//             });
-//         });
-// });
-
-// // create new hike
-// app.post('/hikes/create-new', (req, res) => {
-//     Hike
-//         .create({
-//             trailName: req.body.trailName,
-//             length: req.body.length,
-//             img: req.body.img,
-//             location: req.body.location,
-//             url: req.body.url,
-//             googleMap: req.body.googleMap,
-//             dateCompleted: req.body.dateCompleted,
-//             notes: req.body.notes,
-//             status: req.body.status,
-//             account: req.body.account
-//         })
-//         .then(hike => res.status(201).json(req.body.trailName + ' added'))
-//         .catch(err => {
-//             console.error(err);
-//             res.status(500).json({
-//                 error: 'Something went wrong'
-//             });
-//         });
-
-// });
-
-// //update information for hikes
-// app.put('/trips/update/:id', (req, res) => {
-//     if (!(req.params.id && req.body.id && req.params.id === req.body.id)) {
-//         res.status(400).json({
-//             error: 'Request path id and request body id values must match'
-//         });
-//     }
-
-//     const updated = {};
-//     const updateableFields = ['status', 'dateCompleted', 'notes'];
-//     updateableFields.forEach(field => {
-//         if (field in req.body) {
-//             updated[field] = req.body[field];
-//         }
-//     });
-
-//     Hike
-//         .findByIdAndUpdate(req.params.id, {
-//             $set: updated
-//         }, {
-//             new: true
-//         }, function (err, results) {
-//             if (err) {
-//                 res.status(500).json({
-//                     message: 'Something went wrong'
-//                 })
-//             }
-//             res.json(results.serialize())
-//         });
-
-// });
-
-// //delete trip
-// app.delete('/trips/delete/:id', (req, res) => {
-//     let item = req.params.id
-//     Hike
-//         .remove({
-//             _id: item
-//         }, function (err) {
-//             if (err) {
-//                 console.log(err)
-//             } else {
-//                 res.status(204).end();
-//             }
-//         });
-// });
-
-
 
 app.use('*', (req, res) => {
     res.status(404).json({
