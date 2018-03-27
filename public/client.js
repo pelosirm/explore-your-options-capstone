@@ -607,8 +607,7 @@ function buildSavedInfo(results){
 
 	for(let i=0; i<results[0].length;i++){
 		htmlOutput += `<label class="checkbox-container" id=${results[0][i]._id}>${results[0][i].INSTNM}<a href="#" class="modal_trigger info"><i class="fas fa-info"></i></a><a href="#" class="delete"><i class="fas fa-times"></i></a>`
-		htmlOutput += `<input type="checkbox" name="college"><span class="checkmark"></span></label>`
-                      
+		htmlOutput += `<input type="checkbox" name="college"><span class="checkmark"></span></label>`                      
 	}
 	
 	htmlOutput += '</div></div><div class="row"><div class="col-12"><button class="compare-button"> Compare</button></div></div>'
