@@ -1,7 +1,49 @@
 * {
+    margin: 0;
+    padding: 0;
+    border: 0;
+/*    font-size: 100%;*/
+    /*The box-sizing property is used to tell the browser what the sizing properties (width and height) should include border-box.*/
     box-sizing: border-box;
-    
+    /*reset Chrome user agent styles*/
+    -webkit-margin-before: 0px;
+    -webkit-margin-after: 0px;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    -webkit-padding-before: 0px;
+    -webkit-padding-after: 0px;
+    -webkit-padding-start: 0px;
+    -webkit-padding-end: 0px;
+    /*reset Firefox user agent styles*/
+    -moz-margin-before: 0px;
+    -moz-margin-after: 0px;
+    -moz-margin-start: 0px;
+    -moz-margin-end: 0px;
+    -moz-padding-before: 0px;
+    -moz-padding-after: 0px;
+    -moz-padding-start: 0px;
+    -moz-padding-end: 0px;
+    /*reset Internet Explorer user agent styles*/
+    -ms-margin-before: 0px;
+    -ms-margin-after: 0px;
+    -ms-margin-start: 0px;
+    -ms-margin-end: 0px;
+    -ms-padding-before: 0px;
+    -ms-padding-after: 0px;
+    -ms-padding-start: 0px;
+    -ms-padding-end: 0px;
+    /*reset Opera user agent styles*/
+    -o-margin-before: 0px;
+    -o-margin-after: 0px;
+    -o-margin-start: 0px;
+    -o-margin-end: 0px;
+    -o-padding-before: 0px;
+    -o-padding-after: 0px;
+    -o-padding-start: 0px;
+    -o-padding-end: 0px;
 }
+
+
 
 body,
 html {
@@ -62,7 +104,6 @@ html {
 .header-text h1 {
     font-size: 6em;
     font-weight: 300;
-    line-height: 15px;
     font-family: 'Lobster', cursive;
 }
 
@@ -216,7 +257,7 @@ button {
 }
 
 .how-it-works ul {
-    margin: 0;
+    margin-left: 7%;
     text-align: left;
     list-style-type: none;
 }
@@ -247,6 +288,8 @@ button {
     text-align: center;
     font-weight: 200;
     font-size: 4em;
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
 
 .how-it-works p {
@@ -258,14 +301,13 @@ button {
     text-align: left;
     font-weight: 400;
     font-size: 2em;
-    line-height: 0;
     font-family: 'Assistant', cursive;
 }
 
 /* search careers/colleges */
 
 .search-options {
-    margin-top: 10%;
+    margin-top: 100px;
     margin-bottom: 10%
 }
 
@@ -335,10 +377,6 @@ button {
     background-color: orange;
 }
 
-.search-careers-input legend {
-    color: white;
-}
-
 /* select dropdown */
 
 select {
@@ -356,14 +394,14 @@ select {
 .select {
     position: relative;
     display: block;
-    width: 20em;
+    width: 90%;
     height: 3em;
     line-height: 3;
     background: #2c3e50;
     overflow: hidden;
     border-radius: .25em;
     margin: 30px;
-    left: 20px;
+
 }
 
 select {
@@ -418,12 +456,15 @@ select::-ms-expand {
     color: white;
     margin: 5px;
     font-weight: 200;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .college-results ul,
 .career-results ul,
 .college-more-detail ul {
     list-style-type: none;
+    margin-top: 20px;
 }
 
 .more-details {
@@ -433,6 +474,8 @@ select::-ms-expand {
     margin-right: -3.5%;
     text-align: center;
     text-transform: uppercase;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .more-details a,
@@ -475,13 +518,13 @@ select::-ms-expand {
 
 .career-column .emphasis{
     height: 30px;
-    display: block;
+    display: inline-block;
     line-height: 40px;
-    font-size: 1em;
+    font-size: .8em;
 }
 
 .emphasis {
-    font-size: 1.5em;
+    font-size: 1em;
     color: orange;
     height: 40px;
     display: inline;
@@ -492,6 +535,22 @@ select::-ms-expand {
     height: 30px;
     line-height: 50px;
     font-size: 1.5em;
+}
+
+.college-results .emphasis {
+    font-size: 1em;
+    color: orange;
+    height: 59px;
+    display: inline-block;
+    line-height: 20px;
+    font-size: 22px;
+}
+
+.career-results .emphasis {
+    height: 30px;
+    display: inline-block;
+    line-height: 40px;
+    font-size: 40px;
 }
 
 .center {
@@ -510,7 +569,7 @@ select::-ms-expand {
 .career-results li,
 .college-more-detail li {
     font-weight: 400;
-    font-size: 30px;
+    font-size: 22px;
 
 }
 
@@ -523,7 +582,7 @@ select::-ms-expand {
 .career-results p,
 .college-more-detail p,
 .comparison p {
-    font-size: 36px;
+    font-size: 30px;
 }
 
 .career-results, 
@@ -554,15 +613,15 @@ select::-ms-expand {
     padding: 16px 32px;
     text-align: center;
     font-size: 16px;
-    margin: 0 auto;
+    margin-bottom: : 20px;
     opacity: 1;
     transition: 0.3s;
     display: inline-block;
     text-decoration: none;
     cursor: pointer;
-    width: 30%;
+    width: 50%;
     position: relative;
-    left: 35%;
+    left: 25%;
     top: 45px;
 }
 
@@ -790,21 +849,6 @@ footer {
 
 
 @media only screen and (max-width: 830px) {
-    .select {
-        position: relative;
-        display: block;
-        width: 20em;
-        height: 3em;
-        line-height: 3;
-        background: #2c3e50;
-        overflow: hidden;
-        border-radius: .25em;
-        margin: 30px 0px 30px 0px;
-        left: 0;
-    }
-}
-
-@media only screen and (max-width: 830px) {
     .header-text h1 {
         font-size: 4em;
         font-weight: 300;
@@ -828,6 +872,12 @@ footer {
         height: 100px;
     }
 
+    .career-results .col-6 {
+    height: 450px;
+    padding-left: 0px;
+    color: black;
+}
+
     .container {
         position: relative;
         width: 100%;
@@ -847,18 +897,6 @@ footer {
     }
 
 
-    .select {
-        position: relative;
-        display: block;
-        width: 20em;
-        height: 3em;
-        line-height: 3;
-        background: #2c3e50;
-        overflow: hidden;
-        border-radius: .25em;
-        margin: 30px 0px 30px 0px;
-        left: 25%;
-    }
 
     .input-square {
         position: absolute;
@@ -880,18 +918,10 @@ footer {
         width: 100%;
     }
 
-
-
-    .select {
-position: relative;
-    display: block;
-    width: 15em;
-    height: 3em;
-    line-height: 3;
-    background: #2c3e50;
-    overflow: hidden;
-    border-radius: .25em;
-    margin: 30px 0px 30px 0px;
-    left: 10%;
+    .left {
+        float: left;
+        display: block;
+        width: 100%;
     }
+
 }

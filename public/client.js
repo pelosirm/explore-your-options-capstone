@@ -13,6 +13,16 @@ function createUser(user) {
        })
        .done(function (results) {
            activeUser = results;
+
+          $('.sign-up').hide();
+          $('.header-image').hide();
+          $('.search-options').show();
+          $('.nav-saved').show();
+          $('.nav-login').hide()
+          $('.nav-demo').hide();
+          $('.nav-signout').show();
+          $('.nav-sign-up').hide();
+          $('.nav-search').show();
            
        })
        .fail(function (jxhqr, error, errorThrown) {
@@ -34,6 +44,16 @@ function loginUser(user) {
        })
        .done(function (results) {
        		activeUser = results;
+
+          $('.sign-up').hide();
+          $('.header-image').hide();
+          $('.search-options').show();
+          $('.nav-saved').show();
+          $('.nav-login').hide()
+          $('.nav-demo').hide();
+          $('.nav-signout').show();
+          $('.nav-sign-up').hide();
+          $('.nav-search').show();
        })
        .fail(function (jxhqr, error, errorThrown) {
            console.log(jxhqr);
@@ -168,7 +188,7 @@ function addCollege(collegeId) {
            contentType: 'application/json'
        })
        .done(function (results) {
-           displayError(results);
+           displayError('Record Added');
        })
        .fail(function (jxhqr, error, errorThrown) {
            console.log(jxhqr);
@@ -265,7 +285,20 @@ function deleteInfo(query) {
 
 //format numbers
 const numberWithCommas = (x) => {
-  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  if (x == 'undefined'){
+    return
+  } else {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+}
+
+function resetSearchInputs(){
+    $('.search-colleges-input #state-select').val($("#state-select option:first").val());
+    $('.search-colleges-input #region-select').val($("#region-select option:first").val());
+    $('.search-colleges-input #degree-select').val($("#degree-select option:first").val());
+    $('.search-colleges-input #speciality-select').val($("#speciality-select option:first").val());
+    $('.search-careers-input #career-select').val($("#career-select option:first").val());
+    $('.search-careers-input #state-career-select').val($("#state-career-select option:first").val());
 }
 
 //build html for api results 
@@ -342,9 +375,6 @@ function buildCollegeDropdown(categories){
 }
 
 
-
-
-
 //build results for colleges
 function buildCollegeResults(results){
 
@@ -391,15 +421,15 @@ function buildCareerResults(results){
 		state_ab = ''
 
 	}
-			htmlOutput += `<div class="row career-column"><div class="col-6 star-img right"></div><div class="col-6">`
+			htmlOutput += `<div class="row career-column"><div class="col-12">`
 			htmlOutput += `<p><span class="heavy emphasis orange" id="title-value">${national.OCC_TITLE}</span><br><span class="light" id="state-value"> ${state_ab}</span></p>`
 			htmlOutput += `<ul><li><span class="heavy">National Median Salary:</span> <span id="nat-median-value">${numberWithCommas(national.NAT_A_MEDIAN)}</span></li>`
-    		htmlOutput += `<li><span class="heavy"> Region Median Salary:</span> <span id="st-median-value">${numberWithCommas(state_median)}</span></li>`
-    		htmlOutput += `<li><span class="heavy">Degree Requires:</span> <span id="education-value">${national.EDUCATION}</span></li>`
-    		htmlOutput += `<li><span class="heavy">Experience Needed:</span> <span id="experience-value">${national.WORK_EXPERIENCE}</span></li>`
-    		htmlOutput += `</ul></div></div><div class="row"><div class="col-12">`
-    		htmlOutput += `<button class="save-career-btn"> Save Career</button></div></div>`
-        	htmlOutput += `<p class="new-search center"><a href="#"> new search </a></p>`
+    	htmlOutput += `<li><span class="heavy"> Region Median Salary:</span> <span id="st-median-value">${numberWithCommas(state_median)}</span></li>`
+    	htmlOutput += `<li><span class="heavy">Degree Requires:</span> <span id="education-value">${national.EDUCATION}</span></li>`
+    	htmlOutput += `<li><span class="heavy">Experience Needed:</span> <span id="experience-value">${national.WORK_EXPERIENCE}</span></li>`
+    	htmlOutput += `</ul></div></div><div class="row"><div class="col-12">`
+    	htmlOutput += `<button class="save-career-btn"> Save Career</button></div></div>`
+      htmlOutput += `<p class="new-search center"><a href="#"> new search </a></p>`
 
    $('.career-results').append(htmlOutput)
 
@@ -473,8 +503,8 @@ function buildCollegeDetail(college, input, detail){
 	htmlOutput += '<div class="row career-column">'
 	htmlOutput += '<div class="col-12">'    
 	htmlOutput += `<p><span class="heavy emphasis">${college.INSTNM}</span><br><span class="light"> ${college.CITY}, ${college.STABBR}</span><br>${numberWithCommas(college.UGDS)} undergraduate students</p>`
-    htmlOutput += `<ul>` 
-    htmlOutput +=  `<li><span class="heavy"> School Details: </span>`
+  htmlOutput += `<ul>` 
+  htmlOutput +=  `<li><span class="heavy"> School Details: </span>`
 
     for(let i=0; i<tags.length; i++){
     	if(i !== (tags.length-1))  {
@@ -594,10 +624,10 @@ function buildModal(info){
 	htmlOutput += `<div class="col-12">`
 	htmlOutput += `<p><span class="heavy emphasis orange">${info.career}</span><br><span class="light" id="state-value"> ${info.state}</span></p>`
 	htmlOutput += `<ul><li><span class="heavy">National Median Salary:</span> <span id="nat-median-value">${numberWithCommas(info.nat_a_median)}</span></li>`
-    htmlOutput += `<li><span class="heavy"> Region Median Salary:</span> <span id="st-median-value">${numberWithCommas(info["st-median-value"])}</span></li>`
-    htmlOutput += `<li><span class="heavy">Degree Requires:</span> <span id="education-value">${info.education}</span></li>`
-    htmlOutput += `<li><span class="heavy">Experience Needed:</span> <span id="experience-value">${info.experience}</span></li>`
-    htmlOutput += `</ul></div></div>`
+  htmlOutput += `<li><span class="heavy"> Region Median Salary:</span> <span id="st-median-value">${numberWithCommas(info["st-median-value"])}</span></li>`
+  htmlOutput += `<li><span class="heavy">Degree Requires:</span> <span id="education-value">${info.education}</span></li>`
+  htmlOutput += `<li><span class="heavy">Experience Needed:</span> <span id="experience-value">${info.experience}</span></li>`
+  htmlOutput += `</ul></div></div>`
 
     $('.modal-fill').append(htmlOutput)
 }
@@ -617,13 +647,12 @@ function buildCompareResults(results){
 	}
 
 	let ROI = ((calculationData.salary * 20) - 827136 - (results[1][0]['NPT4'] * 4))
-	console.log(ROI)
 
 	let htmlOutput = '' 
 	htmlOutput += '<div class="row">'
 	htmlOutput += '<div class="col-12">'
 	htmlOutput += `<p><span class="light">as a </span><span class="heavy emphasis orange">${results[0][0]['career']}</span><br><span class="light"> attending</span><span class="heavy emphasis orange"> ${results[1][0]['INSTNM']}</span></p>`
-	htmlOutput += `<p><span class="light"> return on investment over 20 years: </span><br><span class="heavy emphasis orange">$${ROI}</span></p>`
+	htmlOutput += `<p><span class="light"> return on investment over 20 years: </span><br><span class="heavy emphasis orange">$${numberWithCommas(ROI)}</span></p>`
 	htmlOutput += '</div></div>'
 	htmlOutput += `<p class="new-search center back"><a href="#"> back </a></p>`
 
@@ -685,6 +714,10 @@ $(document).ready(function () {
 		$('.header-image').css('height', '100%')
 	})
 
+  $('.nav-signout').on('click',function(){
+    location.reload()
+  })
+
 	//for new searches
 	$('.nav-search').on('click',function(){
 		$('.comparison').hide();
@@ -695,10 +728,13 @@ $(document).ready(function () {
 		$('.college-results').empty();
 		$('.college-more-detail').empty();
 		$('.comparison').empty();
+    $('.saved-options').empty();
+    resetSearchInputs();
 	})
 
 	//nav bar new search
 	$('.new-search').on('click', function(){
+    $('.comparison').empty();
 		$('.comparison').hide();
 		$('.college-results').hide();
 		$('.search-options').show();
@@ -706,11 +742,13 @@ $(document).ready(function () {
 		$('.career-results').empty();
 		$('.college-results').empty();
 		$('.college-more-detail').empty();
+    $('.saved-options').empty();
 
 	})
 
 	//navigation for saved values
 	$('.navigation').on('click','.nav-saved',function(){
+    $('.saved-options').empty();
 		$('.how-it-works').hide();
 		$('header').hide();
 		$('.how-it-works').hide();
@@ -755,7 +793,7 @@ $(document).ready(function () {
            $('.form-create-new [name=password]').val('');
            $('.form-create-new [name=confirmPassword]').val('');
 
-   		   	$('.sign-up').hide();
+   		$('.sign-up').hide();
 			$('.header-image').hide();
 			$('.search-options').show();
 			$('.nav-saved').show();
@@ -788,19 +826,7 @@ $(document).ready(function () {
        $('.form-returning-user [name=username]').val('');
        $('.form-returning-user [name=password]').val('');
 
-       	$('.sign-up').hide();
-		$('.header-image').hide();
-		$('.search-options').show();
-		$('.nav-saved').show();
-		$('.nav-login').hide()
-		$('.nav-demo').hide();
-		$('.nav-signout').show();
-		$('.nav-sign-up').hide();
-		$('.nav-search').show();
    })
-
-
-
 
 
 	//page manipulation for switching career and college search
@@ -928,8 +954,8 @@ $(document).ready(function () {
 		$('.career-results').empty();
 		$('.college-results').empty();
 		$('.college-more-detail').empty();
-		$('.search-careers-input #career-select').val($("#career-select option:first").val());
-		$('.search-careers-input #career-state-select').val($("#career-state-select option:firt").val());
+    resetSearchInputs();
+
 
 	})
 
@@ -941,17 +967,13 @@ $(document).ready(function () {
 		$('.college-results').empty();
 		$('.college-more-detail').empty();
 		$('.comparison').empty();
-		$('.search-colleges-input #state-select').val($("#state-select option:first").val());
-		$('.search-colleges-input #region-select').val($("#region-select option:first").val());
-		$('.search-colleges-input #degree-select').val($("#degree-select option:first").val());
-		$('.search-colleges-input #speciality-select').val($("#speciality-select option:first").val());
+    resetSearchInputs();
 
 	})
 
 
 	//compare button for college and career to get ROI
 	$('.saved-options').on('click','.compare-button', function(){
-		alert($('input:checkbox[name="college"]:checked').val())
 		let query = {
 
 		}

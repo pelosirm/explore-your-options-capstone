@@ -18,6 +18,9 @@ const savedInfoSchema = mongoose.Schema( {
   CONTROL: {
   	type : String
   },
+  HIGHDEG : {
+    type : Number
+  },
   REGION: {
   	type : Number
   },

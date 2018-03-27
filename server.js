@@ -340,6 +340,7 @@ app.post('/save-info',(req,res)=>{
                 CITY: college.CITY,
                 STABBR: college.STABBR,
                 CONTROL: college.CONTROL,
+                HIGHDEG : college.HIGHDEG,
                 HBCU: college.HBCU,
                 PBI: college.PBI,
                 ANNHI: college.ANNHI,
