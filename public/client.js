@@ -287,7 +287,9 @@ function deleteInfo(query) {
 const numberWithCommas = (x) => {
   if (x == 'undefined'){
     return
-  } else {
+  } else if(!x){
+    return 
+  }else { 
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
 }

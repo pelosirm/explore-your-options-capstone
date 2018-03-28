@@ -334,6 +334,7 @@ app.post('/save-info',(req,res)=>{
             _id : req.body.id
         })
         .then(function(info){
+
             let college = info.toObject();
             SavedInfo.create({
                 INSTNM : college.INSTNM, 
@@ -390,12 +391,12 @@ app.post('/save-info',(req,res)=>{
                 '01Business, Management, Marketing, and Related Support Services': college['01Business, Management, Marketing, and Related Support Services'],
                 '01History': college['01History'],
                 UGDS:college.UGDS,
-                NPT4: college.NPT4,
-                NPT41: college.NPT41,
-                NPT42: college.NPT42,
-                NPT43: college.NPT43,
-                NPT44: college.NPT44,
-                NPT45: college.NPT45, 
+                NPT4: JSON.stringify(college.NPT4),
+                NPT41: JSON.stringify(college.NPT41),
+                NPT42: JSON.stringify(college.NPT42),
+                NPT43: JSON.stringify(college.NPT43),
+                NPT44: JSON.stringify(college.NPT44),
+                NPT45: JSON.stringify(college.NPT45), 
                 MD_EARN_WNE_P10: college.MD_EARN_WNE_P10,
                 GT_25K_P6: college.GT_25K_P6,
                 GRAD_DEBT_MDN_SUPP: college.GRAD_DEBT_MDN_SUPP,

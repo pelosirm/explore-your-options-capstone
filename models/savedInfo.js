@@ -173,22 +173,22 @@ const savedInfoSchema = mongoose.Schema( {
   	type : Number
   },
   NPT4: {
-  	type : Number
+  	type : String
   },
   NPT41: {
-  	type : Number
+  	type : String
   },
   NPT42: {
-  	type : Number
+  	type : String
   },
   NPT43: {
-  	type : Number
+  	type : String
   },
   NPT44: {
-  	type : Number
+  	type : String
   },
   NPT45: {
-  	type : Number
+  	type : String
   },
   MD_EARN_WNE_P10: {
   	type : String
