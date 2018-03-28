@@ -5,7 +5,7 @@ let activeUser = ''
 //create new user
 function createUser(user) {
    $.ajax({
-           url: "http://localhost:8080/users/create",
+           url: "/users/create",
            type: "POST",
            dateType: "json",
            data: JSON.stringify(user),
@@ -36,7 +36,7 @@ function createUser(user) {
 //login returning user
 function loginUser(user) {
    $.ajax({
-           url: "http://localhost:8080/users/login",
+           url: "/users/login",
            type: "POST",
            dataType: "json",
            data: JSON.stringify(user),
@@ -66,7 +66,7 @@ function loginUser(user) {
 //get college info for building dropdowns
 function getCollegeSelection(){
 	   $.ajax({
-           url: "http://localhost:8080/college",
+           url: "/college",
            type: "GET",
            dateType: "json",
            contentType: "application/json"
@@ -85,7 +85,7 @@ function getCollegeSelection(){
 // get job info for building dropdowns
 function getAllJobs() {
    $.ajax({
-           url: "http://localhost:8080/jobs",
+           url: "/jobs",
            type: "GET",
            dateType: "json",
            contentType: "application/json"
@@ -105,7 +105,7 @@ function getAllJobs() {
 //get results for career query
 function getCareerSelection(search) {
 	$.ajax({
-		url:"http://localhost:8080/career-search/?career="+search.career+'&state='+search.state,
+		url:"/career-search/?career="+search.career+'&state='+search.state,
 		type:"GET", 
 		dataType: "json", 
 		contentType: "application/json"
@@ -124,7 +124,7 @@ function getCareerSelection(search) {
 //get results for college query
 function getCollegeSearch(search) {
 	$.ajax({
-		url:"http://localhost:8080/college-search/?degree="+search.degree+'&speciality='+search.speciality + '&region='+search.region+'&state=' + search.state,
+		url:"/college-search/?degree="+search.degree+'&speciality='+search.speciality + '&region='+search.region+'&state=' + search.state,
 		type:"GET", 
 		dataType: "json", 
 		contentType: "application/json"
@@ -143,7 +143,7 @@ function getCollegeSearch(search) {
 //get college details
 function getIndividualCollege(id){
 	$.ajax({
-		url:'http://localhost:8080/search/'+id, 
+		url:'/search/'+id, 
 		type:'GET', 
 		dataType:'json', 
 		contentType: 'application/json'
@@ -162,7 +162,7 @@ function getIndividualCollege(id){
 // add career info to user
 function addCareer(careerInfo) {
    $.ajax({
-           url: "http://localhost:8080/career/create-new",
+           url: "/career/create-new",
            type: "POST",
            dataType: "json",
            data: JSON.stringify(careerInfo),
@@ -181,7 +181,7 @@ function addCareer(careerInfo) {
 // add college info to user
 function addCollege(collegeId) {
    $.ajax({
-           url: "http://localhost:8080/save-info",
+           url: "/save-info",
            type: "POST",
            dataType: "json",
            data: JSON.stringify(collegeId),
@@ -200,7 +200,7 @@ function addCollege(collegeId) {
 //get saved info by user
 function getSavedInfo(user) {
    $.ajax({
-           url: "http://localhost:8080/user-saved-info",
+           url: "/user-saved-info",
            type: "POST",
            dataType: "json",
            data: JSON.stringify(user),
@@ -219,7 +219,7 @@ function getSavedInfo(user) {
 //get info for saved modals
 function getInfoForModal(info){
 	   $.ajax({
-           url: "http://localhost:8080/modal-info",
+           url: "/modal-info",
            type: "POST",
            dataType: "json",
            data: JSON.stringify(info),
@@ -242,7 +242,7 @@ function getInfoForModal(info){
 //compare college and career
 function compareCollege(query){
 	   $.ajax({
-           url: "http://localhost:8080/compare",
+           url: "/compare",
            type: "POST",
            dataType: "json",
            data: JSON.stringify(query),
@@ -262,7 +262,7 @@ function compareCollege(query){
 //delete info from user
 function deleteInfo(query) {
    $.ajax({
-           url: "http://localhost:8080/delete-info",
+           url: "/delete-info",
            type: "DELETE",
            dataType: "json",
            data: JSON.stringify(query),
