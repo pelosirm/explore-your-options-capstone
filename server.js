@@ -26,6 +26,7 @@ const {
     User
 } = require('./models/user')
 const mongoose = require('mongoose');
+const cors = require('cors');
 const events = require('events');
 const https = require('https');
 const unirest = require('unirest');
@@ -36,7 +37,9 @@ const passport = require('passport');
 const BasicStrategy = require('passport-http').BasicStrategy;
 const express = require('express');
 const app = express();
+
 app.use(bodyParser.json());
+app.use(cors());
 app.use(express.static('public'));
 
 mongoose.Promise = global.Promise;
