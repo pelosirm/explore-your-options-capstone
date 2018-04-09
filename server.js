@@ -242,7 +242,7 @@ app.get('/career-search',(req,res)=>{
         })
         .then(function(job){
             results.push(job)
-            stateList
+            State
                 .findOne(
                     {'OCC_CODE':req.query.career, 
                      'ST': req.query.state
