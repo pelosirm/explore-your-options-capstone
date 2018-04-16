@@ -276,7 +276,7 @@ app.get('/college-search',(req,res)=>{
         return parseInt(int)
     })
 
-    if(req.query.state=== 'undefined') {
+    if(req.query.state=== null) {
     let query = {
     }
         query[req.query.speciality] = { $gt:0}, 
