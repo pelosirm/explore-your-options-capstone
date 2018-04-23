@@ -872,7 +872,7 @@ $(document).ready(function () {
 			degree : degree, 
 			speciality : speciality, 
 			region : region,
-			state : state
+			state : null
 
 		}
 
