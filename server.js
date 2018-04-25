@@ -406,7 +406,9 @@ app.post('/save-info',(req,res)=>{
                 GRAD_DEBT_MDN10YR_SUPP: college.GRAD_DEBT_MDN10YR_SUPP,
                 RPY_3YR_RT_SUPP: college.RPY_3YR_RT_SUPP,
                 C150_L4_POOLED_SUPP: college.C150_L4_POOLED_SUPP,
-                user: req.body.user
+                user: req.body.user, 
+                degree : req.body.degree
+                
             })
             .then(collegeSave => res.status(201).json(req.body.id + ' added'))
             .catch(err => {
