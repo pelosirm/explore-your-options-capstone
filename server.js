@@ -340,6 +340,7 @@ app.post('/save-info',(req,res)=>{
         .then(function(info){
             let college = info.toObject();
             SavedInfo.create({
+                ORIGINALID : req.body.id,
                 INSTNM : college.INSTNM, 
                 CITY: college.CITY,
                 STABBR: college.STABBR,
