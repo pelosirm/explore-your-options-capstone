@@ -338,7 +338,9 @@ app.post('/save-info',(req,res)=>{
             _id : req.body.id
         })
         .then(function(info){
+            console.log(req.body.id)
             let college = info.toObject();
+            console.log(college)
             SavedInfo.create({
                 ORIGINALID : req.body.id,
                 INSTNM : college.INSTNM, 

@@ -5,7 +5,9 @@ mongoose.Promise = global.Promise;
 
 const savedInfoSchema = mongoose.Schema( {
 
-
+  ORIGINALID : {
+    type : String
+  },
   INSTNM: {
   	type : String
   },
@@ -210,6 +212,9 @@ const savedInfoSchema = mongoose.Schema( {
   },
   user: {
   	type : String
+  }, 
+  degree : {
+    type : String
   }
 })
 

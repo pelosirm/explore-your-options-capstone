@@ -760,7 +760,7 @@ $(document).ready(function () {
 		$('.career-results').hide();
 		$('.saved-options').show();
 		let user = {
-			user : 'riley'
+			user : activeUser
 		}
 		getSavedInfo(user)
 
@@ -997,6 +997,7 @@ $(document).ready(function () {
 		let user = {
 			user : activeUser
 		}
+    debugger
 		getSavedInfo(user)
 		$('.saved-options').show();
 		$('.comparison').hide();
