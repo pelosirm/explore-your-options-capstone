@@ -84,6 +84,17 @@ function closeServer() {
 // ---------------- SIGN IN / CREATE USER -----------------------------------------------------
 // create new user
 app.post('/users/create', (req, res) => {
+
+    const requiredFields = ['username', 'password'];
+      for (let i=0; i<requiredFields.length; i++) {
+        const field = requiredFields[i];
+        if (!(field in req.body)) {
+          const message = `Missing \`${field}\` in request body`
+          console.error(message);
+          return res.status(400).send(message);
+        }
+    }
+
     let username = req.body.username;
     username = username.trim();
     let password = req.body.password;
@@ -116,7 +127,6 @@ app.post('/users/create', (req, res) => {
                 }
 
                 if (item) {
-                    //                    console.log(`User \`${username}\` created.`);
                     return res.json(username);
                 }
             })
@@ -126,6 +136,15 @@ app.post('/users/create', (req, res) => {
 
 // sign in user
 app.post('/users/login', (req, res) => {
+    const requiredFields = ['username', 'password'];
+      for (let i=0; i<requiredFields.length; i++) {
+        const field = requiredFields[i];
+        if (!(field in req.body)) {
+          const message = `Missing \`${field}\` in request body`
+          console.error(message);
+          return res.status(400).send(message);
+        }
+    }
 
     let username = req.body.username;
     let password = req.body.password;
@@ -332,15 +351,24 @@ app.get('/search/:id',(req,res)=>{
 
 //add college info
 app.post('/save-info',(req,res)=>{
+    const requiredFields = ['user', 'id','degree'];
+      for (let i=0; i<requiredFields.length; i++) {
+        const field = requiredFields[i];
+        if (!(field in req.body)) {
+          const message = `Missing \`${field}\` in request body`
+          console.error(message);
+          return res.status(400).send(message);
+        }
+    }
+
+
     let user = req.body.user
     College
         .findOne({
             _id : req.body.id
         })
         .then(function(info){
-            console.log(req.body.id)
             let college = info.toObject();
-            console.log(college)
             SavedInfo.create({
                 ORIGINALID : req.body.id,
                 INSTNM : college.INSTNM, 
@@ -410,8 +438,7 @@ app.post('/save-info',(req,res)=>{
                 RPY_3YR_RT_SUPP: college.RPY_3YR_RT_SUPP,
                 C150_L4_POOLED_SUPP: college.C150_L4_POOLED_SUPP,
                 user: req.body.user, 
-                degree : req.body.degree
-                
+                degree : req.body.degree   
             })
             .then(collegeSave => res.status(201).json(req.body.id + ' added'))
             .catch(err => {
@@ -433,6 +460,16 @@ app.post('/save-info',(req,res)=>{
 
 //add career info
 app.post('/career/create-new', (req, res) => {
+    const requiredFields = ['career', 'state','nat_a_median','st_a_median','education','experience','user'];
+      for (let i=0; i<requiredFields.length; i++) {
+        const field = requiredFields[i];
+        if (!(field in req.body)) {
+          const message = `Missing \`${field}\` in request body`
+          console.error(message);
+          return res.status(400).send(message);
+        }
+    }
+
     Career
         .create({
             career: req.body.career,
@@ -455,6 +492,16 @@ app.post('/career/create-new', (req, res) => {
 
 //get the user saved info
 app.post('/user-saved-info', (req, res) => {
+    const requiredFields = ['user'];
+      for (let i=0; i<requiredFields.length; i++) {
+        const field = requiredFields[i];
+        if (!(field in req.body)) {
+          const message = `Missing \`${field}\` in request body`
+          console.error(message);
+          return res.status(400).send(message);
+        }
+    }
+
     let results = [];
 
     SavedInfo
@@ -488,6 +535,16 @@ app.post('/user-saved-info', (req, res) => {
 
 //get modal info for saved info
 app.post('/modal-info', (req, res) => {
+    const requiredFields = ['id'];
+      for (let i=0; i<requiredFields.length; i++) {
+        const field = requiredFields[i];
+        if (!(field in req.body)) {
+          const message = `Missing \`${field}\` in request body`
+          console.error(message);
+          return res.status(400).send(message);
+        }
+    }
+
     if(req.body.category === 'career') {
         Career
             .find({
@@ -522,15 +579,23 @@ app.post('/modal-info', (req, res) => {
 
 //compare college and career for ROI
 app.post('/compare',(req,res)=>{
+    const requiredFields = ['career', 'college'];
+      for (let i=0; i<requiredFields.length; i++) {
+        const field = requiredFields[i];
+        if (!(field in req.body)) {
+          const message = `Missing \`${field}\` in request body`
+          console.error(message);
+          return res.status(400).send(message);
+        }
+    }
+
     let results = [];
-    console.log(req.body)
     Career
         .find({
             _id: req.body.career
         })
         .then(function(career){
             results.push(career);
-
             SavedInfo.find({
                 _id : req.body.college
             })
@@ -556,7 +621,17 @@ app.post('/compare',(req,res)=>{
 //delete saved info
 
 app.delete('/delete-info', (req, res) => {
-    console.log(req.body)
+    const requiredFields = ['career', 'id'];
+      for (let i=0; i<requiredFields.length; i++) {
+        const field = requiredFields[i];
+        if (!(field in req.body)) {
+          const message = `Missing \`${field}\` in request body`
+          console.error(message);
+          return res.status(400).send(message);
+        }
+    }
+
+    
     if(req.body.category === 'career') {
         Career
             .remove({
@@ -572,7 +647,7 @@ app.delete('/delete-info', (req, res) => {
                     })
         })
     } else {
-        console.log(req.body.id)
+        
         SavedInfo
             .remove({
                 _id : req.body.id
