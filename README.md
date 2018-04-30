@@ -4,13 +4,25 @@ Search potential careers and colleges to decide where you want to go.
 
 ## Screenshots
 
-![alt text](https://github.com/pelosirm/take-a-hike-node-capstone/blob/master/readmeImg/front_page.png)
+![alt text](https://github.com/pelosirm/explore-your-options-capstone/blob/master/readmeImg/FrontPage.png)
 
-![alt text](https://github.com/pelosirm/take-a-hike-node-capstone/blob/master/readmeImg/search.png)
+![alt text](https://github.com/pelosirm/explore-your-options-capstone/blob/master/readmeImg/HowItWorks.png)
 
-![alt text](https://github.com/pelosirm/take-a-hike-node-capstone/blob/master/readmeImg/hike-results.png)
+![alt text](https://github.com/pelosirm/explore-your-options-capstone/blob/master/readmeImg/Login.png)
 
-![alt text](https://github.com/pelosirm/take-a-hike-node-capstone/blob/master/readmeImg/hike-info.png)
+![alt text](https://github.com/pelosirm/explore-your-options-capstone/blob/master/readmeImg/Search.png)
+
+![alt text](https://github.com/pelosirm/explore-your-options-capstone/blob/master/readmeImg/Search_Colleges.png)
+
+![alt text](https://github.com/pelosirm/explore-your-options-capstone/blob/master/readmeImg/College_Results.png)
+
+![alt text](https://github.com/pelosirm/explore-your-options-capstone/blob/master/readmeImg/Careers.png)
+
+![alt text](https://github.com/pelosirm/explore-your-options-capstone/blob/master/readmeImg/Compare.png)
+
+![alt text](https://github.com/pelosirm/explore-your-options-capstone/blob/master/readmeImg/ROI.png)
+
+
 
 ## Use Case
 
@@ -58,7 +70,7 @@ Find the NODE working protype here: https://explore-your-options.herokuapp.com a
     <li><a href="https://mochajs.org/">Mocha</a> and <a href="http://chaijs.com/">Chai</a> for testing</li>
 
 </ul>
-<p>The app uses AJAX JSON calls to the Hiking Project API to return the hike search results.</p>
+<p>The app uses AJAX JSON calls to the mLab database that was seeded with governmental information on colleges and careers.</p>
 <h3>Responsive</h3>
 <ul>
     <li>The app is responsive and optimized for both desktop and mobile viewing and use.</li>
@@ -72,8 +84,7 @@ Find the NODE working protype here: https://explore-your-options.herokuapp.com a
 Planned additional features and improvements will allow users to:
 
 <ul>
-    <li>Be able to add additional info with hike, pictures etc</li>
-    <li>Add more conditional information around the places visiting ie weather and local campgrounds</li>
+    <li>Be able to do more indepth analysis in regards to debt that one would incure</li>
 </ul>
 
 ## NODE command lines

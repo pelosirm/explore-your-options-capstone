@@ -254,7 +254,7 @@ app.get('/college',(req,res)=>{
 })
 
 
-//get career info for dropdowns
+//get career info
 app.get('/career-search',(req,res)=>{
     let results = []
     National
@@ -537,7 +537,7 @@ app.post('/user-saved-info', (req, res) => {
 
 //get modal info for saved info
 app.post('/modal-info', (req, res) => {
-    const requiredFields = ['id'];
+    const requiredFields = ['id','category'];
       for (let i=0; i<requiredFields.length; i++) {
         const field = requiredFields[i];
         if (!(field in req.body)) {
@@ -623,7 +623,7 @@ app.post('/compare',(req,res)=>{
 //delete saved info
 
 app.delete('/delete-info', (req, res) => {
-    const requiredFields = ['career', 'id'];
+    const requiredFields = ['category', 'id'];
       for (let i=0; i<requiredFields.length; i++) {
         const field = requiredFields[i];
         if (!(field in req.body)) {
