@@ -1,5 +1,7 @@
 //assign active user for user interactions
 let activeUser = ''
+//assign degree to use persist over multiple pages
+let degreeValue = ''
 //api calls
 
 //create new user
@@ -857,10 +859,11 @@ $(document).ready(function () {
 		event.preventDefault();
 		let degree = $( "#degree-select option:selected" ).val();
 		let speciality = '01'+$( "#speciality-select option:selected" ).val();
+    degreeValue = $( "#degree-select option:selected" ).val();
 		
 
-		let region = undefined
-		let state = undefined
+		let region = null
+		let state = null
 
 		if($('.search-colleges-input #state-select').val()== 'Select State'){
 			region = $( "#region-select option:selected" ).val();
@@ -872,7 +875,7 @@ $(document).ready(function () {
 			degree : degree, 
 			speciality : speciality, 
 			region : region,
-			state : null
+			state : state
 
 		}
 
@@ -924,7 +927,7 @@ $(document).ready(function () {
 			st_a_median : '', 
 			education : '', 
 			experience : '', 
-			user : 'riley'
+			user : ''
 		}
 
 		career.career = $('.career-results').find('#title-value').text()
@@ -933,6 +936,7 @@ $(document).ready(function () {
 		career.st_a_median = $('.career-results').find('#st-median-value').text()
 		career.education = $('.career-results').find('#education-value').text()
 		career.experience = $('.career-results').find('#experience-value').text()
+    career.user = activeUser
 
 		addCareer(career)
 	})
@@ -941,7 +945,9 @@ $(document).ready(function () {
 	$('.college-more-detail').on('click','.save-college-btn',function(event){
 		event.preventDefault();
 		let query = {
-			id : event.target.id
+			id : event.target.id,
+      user : activeUse,
+      degree : degreeValue
 		}
 		
 		addCollege(query)

@@ -49,7 +49,7 @@ graduation rate, and average debt.
 Find the NODE working protype here: https://explore-your-options.herokuapp.com and REACT one here https://pelosirm.github.io/explore-your-options-capstone-react/build
 
 ## Functionality
-* When the user sets up for an account, they are able to search hikes by location and save them as they are planning out their trips.
+* When the user sets up for an account, they are able to search careers and colleges and save them to compare return on investment. 
 
 ## Technical
 
