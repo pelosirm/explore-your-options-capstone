@@ -46,7 +46,7 @@ graduation rate, and average debt.
 
 ## Working Prototype
 
-Find the NODE working protype here: https://explore-your-options.herokuapp.com and REACT one here https://pelosirm.github.io/explore-your-options-capstone-react/build
+Find the NODE working protype here: https://explore-your-options.herokuapp.com and REACT one here https://explore-your-options.netlify.com
 
 ## Functionality
 * When the user sets up for an account, they are able to search careers and colleges and save them to compare return on investment. 
@@ -58,7 +58,7 @@ Find the NODE working protype here: https://explore-your-options.herokuapp.com a
     <li>HTML5</li>
     <li>CSS3</li>
     <li>JavaScript</li>
-    <li>jQuery</li>
+    <li>Jquery</li>
 </ul>
 <h3>Back End</h3>
 <ul>
