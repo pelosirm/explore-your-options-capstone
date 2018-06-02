@@ -85,7 +85,7 @@ function closeServer() {
 // create new user
 app.post('/users/create', (req, res) => {
 
-    const requiredFields = ['username', 'password'];
+    const requiredFields = ['username', 'password','confirmPassword'];
       for (let i=0; i<requiredFields.length; i++) {
         const field = requiredFields[i];
         if (!(field in req.body)) {
@@ -97,10 +97,20 @@ app.post('/users/create', (req, res) => {
         }
     }
 
+
     let username = req.body.username;
     username = username.trim();
     let password = req.body.password;
     password = password.trim();
+    let confirmPassword = req.body.confirmPassword
+    confirmPassword = confirmPassword.trim();
+
+    let unconfirmedPassword = {
+        message : 'Oops! Passwords do not match'
+    }
+    if(password !== confirmPassword){
+        return res.status(400).send(unconfirmedPassword)
+    }
 
     bcrypt.genSalt(10, (err, salt) => {
         if (err) {
